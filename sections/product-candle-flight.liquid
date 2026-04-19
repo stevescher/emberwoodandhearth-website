@@ -1,18 +1,9 @@
 {%- liquid
   assign current_variant = product.selected_or_first_available_variant
   assign candles_collection = collections['candles']
-  assign tray_product = products['candle-tray']
 
-  assign tray_id_2 = 0
-  assign tray_id_3 = 0
-  for tv in tray_product.variants
-    assign tvl = tv.title | downcase
-    if tvl contains 'two' or tvl contains '2'
-      assign tray_id_2 = tv.id
-    elsif tvl contains 'three' or tvl contains '3'
-      assign tray_id_3 = tv.id
-    endif
-  endfor
+  assign tray_id_2 = section.settings.tray_variant_id_2
+  assign tray_id_3 = section.settings.tray_variant_id_3
 
   assign cv_lower = current_variant.title | downcase
   assign initial_required_count = 2
@@ -481,6 +472,16 @@
       "id": "color_scheme",
       "label": "Color scheme",
       "default": "scheme-a6e395d7-0656-4f8f-a7c3-180e034be4c1"
+    },
+    {
+      "type": "text",
+      "id": "tray_variant_id_2",
+      "label": "2-Candle Tray variant ID"
+    },
+    {
+      "type": "text",
+      "id": "tray_variant_id_3",
+      "label": "3-Candle Tray variant ID"
     }
   ]
 }
