@@ -52,7 +52,7 @@
             type="button"
             class="cf-variant-btn{% if variant == current_variant %} is-active{% endif %}"
             data-variant-id="{{ variant.id }}"
-            aria-pressed="{{ variant == current_variant }}"
+            aria-pressed="{% if variant == current_variant %}true{% else %}false{% endif %}"
           >{{ variant.title | escape }}</button>
         {%- endfor -%}
       </div>
