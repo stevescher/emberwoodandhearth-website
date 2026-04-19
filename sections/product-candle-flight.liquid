@@ -1,6 +1,6 @@
 {%- liquid
   assign current_variant = product.selected_or_first_available_variant
-  assign candles_collection = collections['candles']
+  assign candles_collection = collections['scents']
   assign initial_required_count = 2
   if current_variant.title contains 'Three'
     assign initial_required_count = 3
@@ -81,7 +81,7 @@
             <span class="cf-scent-name">{{ scent.title | escape }}</span>
           </label>
         {%- else -%}
-          <p class="cf-empty">No scents found. Please add products to the Candles collection in Shopify admin.</p>
+          <p class="cf-empty">No scents found. Please add products to the Scents collection in Shopify admin.</p>
         {%- endfor -%}
       </div>
 
