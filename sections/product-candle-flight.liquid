@@ -1,9 +1,16 @@
 {%- liquid
   assign current_variant = product.selected_or_first_available_variant
   assign candles_collection = collections['scents']
+  assign cv_lower = current_variant.title | downcase
   assign initial_required_count = 2
-  if current_variant.title contains 'Three'
+  if cv_lower contains 'three' or cv_lower contains '3'
     assign initial_required_count = 3
+  elsif cv_lower contains 'four' or cv_lower contains '4'
+    assign initial_required_count = 4
+  elsif cv_lower contains 'five' or cv_lower contains '5'
+    assign initial_required_count = 5
+  elsif cv_lower contains 'six' or cv_lower contains '6'
+    assign initial_required_count = 6
   endif
 -%}
 
@@ -13,7 +20,7 @@
       {
         "id": {{ variant.id }},
         "title": {{ variant.title | json }},
-        "scentCount": {% if variant.title contains 'Three' %}3{% else %}2{% endif %},
+        "scentCount": {%- assign v_lower = variant.title | downcase -%}{%- if v_lower contains 'two' or v_lower contains '2' -%}2{%- elsif v_lower contains 'three' or v_lower contains '3' -%}3{%- elsif v_lower contains 'four' or v_lower contains '4' -%}4{%- elsif v_lower contains 'five' or v_lower contains '5' -%}5{%- elsif v_lower contains 'six' or v_lower contains '6' -%}6{%- else -%}2{%- endif -%},
         "available": {{ variant.available }},
         "formattedPrice": {{ variant.price | money | json }},
         "formattedCompareAtPrice": {% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money | json }}{% else %}null{% endif %},
@@ -412,32 +419,18 @@
       atcText.textContent = 'Adding...';
       errEl.hidden        = true;
 
-      const properties = {
-        'Scent 1': selectedScents[0],
-        'Scent 2': selectedScents[1],
-      };
-      if (requiredCount === 3) properties['Scent 3'] = selectedScents[2];
-
-      // Collect cart section IDs so the theme can morph-update the drawer
+      // Use FormData so the variant ID and properties come directly from the form inputs
+      const formData = new FormData(form);
       const cartSectionIds = Array.from(document.querySelectorAll('cart-items-component'))
         .map(el => el.dataset.sectionId)
         .filter(Boolean);
-
-      const payload = {
-        id:         Number(variantIdInput.value),
-        quantity:   1,
-        properties,
-      };
-      if (cartSectionIds.length) payload.sections = cartSectionIds.join(',');
+      if (cartSectionIds.length) formData.append('sections', cartSectionIds.join(','));
 
       try {
-        const res  = await fetch('/cart/add.js', {
+        const res = await fetch('/cart/add.js', {
           method:  'POST',
-          headers: {
-            'Content-Type':    'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
-          },
-          body: JSON.stringify(payload),
+          headers: { 'X-Requested-With': 'XMLHttpRequest' },
+          body:    formData,
         });
         const data = await res.json();
 
