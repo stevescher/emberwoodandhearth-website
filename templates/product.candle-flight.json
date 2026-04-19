@@ -2,7 +2,9 @@
   "sections": {
     "main": {
       "type": "product-candle-flight",
-      "settings": {}
+      "settings": {
+        "color_scheme": "scheme-a6e395d7-0656-4f8f-a7c3-180e034be4c1"
+      }
     }
   },
   "order": ["main"]

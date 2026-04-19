@@ -1,6 +1,19 @@
 {%- liquid
   assign current_variant = product.selected_or_first_available_variant
-  assign candles_collection = collections['scents']
+  assign candles_collection = collections['candles']
+  assign tray_product = products['candle-tray']
+
+  assign tray_id_2 = 0
+  assign tray_id_3 = 0
+  for tv in tray_product.variants
+    assign tvl = tv.title | downcase
+    if tvl contains 'two' or tvl contains '2'
+      assign tray_id_2 = tv.id
+    elsif tvl contains 'three' or tvl contains '3'
+      assign tray_id_3 = tv.id
+    endif
+  endfor
+
   assign cv_lower = current_variant.title | downcase
   assign initial_required_count = 2
   if cv_lower contains 'three' or cv_lower contains '3'
@@ -17,10 +30,12 @@
 <script type="application/json" id="cf-variant-data-{{ section.id }}">
   [
     {%- for variant in product.variants -%}
+      {%- assign v_lower = variant.title | downcase -%}
       {
         "id": {{ variant.id }},
         "title": {{ variant.title | json }},
-        "scentCount": {%- assign v_lower = variant.title | downcase -%}{%- if v_lower contains 'two' or v_lower contains '2' -%}2{%- elsif v_lower contains 'three' or v_lower contains '3' -%}3{%- elsif v_lower contains 'four' or v_lower contains '4' -%}4{%- elsif v_lower contains 'five' or v_lower contains '5' -%}5{%- elsif v_lower contains 'six' or v_lower contains '6' -%}6{%- else -%}2{%- endif -%},
+        "scentCount": {%- if v_lower contains 'two' or v_lower contains '2' -%}2{%- elsif v_lower contains 'three' or v_lower contains '3' -%}3{%- elsif v_lower contains 'four' or v_lower contains '4' -%}4{%- elsif v_lower contains 'five' or v_lower contains '5' -%}5{%- elsif v_lower contains 'six' or v_lower contains '6' -%}6{%- else -%}2{%- endif -%},
+        "trayVariantId": {%- if v_lower contains 'two' or v_lower contains '2' -%}{{ tray_id_2 }}{%- elsif v_lower contains 'three' or v_lower contains '3' -%}{{ tray_id_3 }}{%- elsif v_lower contains 'four' or v_lower contains '4' -%}{{ tray_id_3 }}{%- else -%}{{ tray_id_2 }}{%- endif -%},
         "available": {{ variant.available }},
         "formattedPrice": {{ variant.price | money | json }},
         "formattedCompareAtPrice": {% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money | json }}{% else %}null{% endif %},
@@ -30,7 +45,8 @@
   ]
 </script>
 
-<div class="cf-page" id="candle-flight-{{ section.id }}">
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="cf-page color-{{ section.settings.color_scheme }}" id="candle-flight-{{ section.id }}">
 
   <div class="cf-media">
     {%- assign display_image = current_variant.featured_image | default: product.featured_image -%}
@@ -73,12 +89,6 @@
     {%- endunless -%}
 
     <form id="cf-form-{{ section.id }}" novalidate>
-      <input type="hidden" id="cf-variant-id-{{ section.id }}" name="id" value="{{ current_variant.id }}">
-      <input type="hidden" name="quantity" value="1">
-      <input type="hidden" id="cf-scent-1-{{ section.id }}" name="properties[Scent 1]" value="">
-      <input type="hidden" id="cf-scent-2-{{ section.id }}" name="properties[Scent 2]" value="">
-      {%- comment -%} Scent 3 input is added/removed dynamically by JS for Three-Candles variant {%- endcomment -%}
-
       <p class="cf-counter" aria-live="polite">
         <span id="cf-count-{{ section.id }}">0</span> of <span id="cf-req-{{ section.id }}">{{ initial_required_count }}</span> scents selected
       </p>
@@ -91,11 +101,16 @@
       >
         {%- for scent in candles_collection.products -%}
           <label class="cf-scent-item">
-            <input type="checkbox" class="cf-cb" value="{{ scent.title | escape }}">
+            <input
+              type="checkbox"
+              class="cf-cb"
+              value="{{ scent.title | escape }}"
+              data-variant-id="{{ scent.variants.first.id }}"
+            >
             <span class="cf-scent-name">{{ scent.title | escape }}</span>
           </label>
         {%- else -%}
-          <p class="cf-empty">No scents found. Please add products to the Scents collection in Shopify admin.</p>
+          <p class="cf-empty">No scents found. Please add products to the Candles collection in Shopify admin.</p>
         {%- endfor -%}
       </div>
 
@@ -290,9 +305,6 @@
     );
 
     const form           = document.getElementById('cf-form-' + sid);
-    const variantIdInput = document.getElementById('cf-variant-id-' + sid);
-    const scent1Input    = document.getElementById('cf-scent-1-' + sid);
-    const scent2Input    = document.getElementById('cf-scent-2-' + sid);
     const countEl        = document.getElementById('cf-count-' + sid);
     const reqEl          = document.getElementById('cf-req-' + sid);
     const atcBtn         = document.getElementById('cf-atc-' + sid);
@@ -306,37 +318,18 @@
 
     let selectedScents = [];
     let requiredCount  = parseInt(reqEl.textContent, 10);
-    let scent3Input    = null;
+    let currentVariant = variantData.find(v => v.id === {{ current_variant.id }});
 
     function getCheckboxes() {
       return Array.from(grid.querySelectorAll('.cf-cb'));
-    }
-
-    function syncScent3Input() {
-      if (requiredCount === 3 && !scent3Input) {
-        scent3Input = document.createElement('input');
-        scent3Input.type = 'hidden';
-        scent3Input.name = 'properties[Scent 3]';
-        scent3Input.value = '';
-        form.insertBefore(scent3Input, errEl);
-      } else if (requiredCount !== 3 && scent3Input) {
-        scent3Input.remove();
-        scent3Input = null;
-      }
-    }
-
-    function syncHiddenInputs() {
-      scent1Input.value = selectedScents[0] || '';
-      scent2Input.value = selectedScents[1] || '';
-      if (scent3Input) scent3Input.value = selectedScents[2] || '';
     }
 
     function updateUI() {
       countEl.textContent = selectedScents.length;
       reqEl.textContent   = requiredCount;
 
-      const complete   = selectedScents.length === requiredCount;
-      atcBtn.disabled  = !complete;
+      const complete  = selectedScents.length === requiredCount;
+      atcBtn.disabled = !complete;
       atcText.textContent = complete ? 'Add to cart' : 'Select your scents';
 
       const maxReached = selectedScents.length >= requiredCount;
@@ -351,15 +344,13 @@
         cb.checked  = false;
         cb.disabled = false;
       });
-      syncHiddenInputs();
       updateUI();
     }
 
-    // Variant button clicks
     variantBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        const variantId = btn.dataset.variantId;
-        const variant   = variantData.find(v => String(v.id) === variantId);
+        const variantId = parseInt(btn.dataset.variantId, 10);
+        const variant   = variantData.find(v => v.id === variantId);
         if (!variant) return;
 
         variantBtns.forEach(b => {
@@ -369,8 +360,8 @@
         btn.classList.add('is-active');
         btn.setAttribute('aria-pressed', 'true');
 
-        variantIdInput.value = variantId;
-        requiredCount = variant.scentCount;
+        currentVariant = variant;
+        requiredCount  = variant.scentCount;
 
         if (productImg && variant.featuredImageSrc) {
           productImg.src = variant.featuredImageSrc;
@@ -384,53 +375,66 @@
           comparePriceEl.hidden = true;
         }
 
-        syncScent3Input();
         resetSelections();
       });
     });
 
-    // Checkbox interaction (event delegation)
     grid.addEventListener('change', e => {
       const cb = e.target;
       if (!cb.classList.contains('cf-cb')) return;
 
       if (cb.checked) {
         if (selectedScents.length < requiredCount) {
-          selectedScents.push(cb.value);
+          selectedScents.push({
+            name: cb.value,
+            variantId: parseInt(cb.dataset.variantId, 10)
+          });
         } else {
           cb.checked = false;
           return;
         }
       } else {
-        selectedScents = selectedScents.filter(s => s !== cb.value);
+        selectedScents = selectedScents.filter(s => s.name !== cb.value);
       }
 
-      syncHiddenInputs();
       updateUI();
     });
 
-    // Form submit — AJAX add to cart, integrated with theme cart drawer
     form.addEventListener('submit', async e => {
       e.preventDefault();
       if (selectedScents.length !== requiredCount) return;
 
-      const previousText = atcText.textContent;
+      if (!currentVariant || !currentVariant.trayVariantId) {
+        errEl.textContent = 'Could not determine tray. Please refresh and try again.';
+        errEl.hidden = false;
+        return;
+      }
+
+      const previousText  = atcText.textContent;
       atcBtn.disabled     = true;
       atcText.textContent = 'Adding...';
       errEl.hidden        = true;
 
-      // Use FormData so the variant ID and properties come directly from the form inputs
-      const formData = new FormData(form);
+      const items = [
+        { id: currentVariant.trayVariantId, quantity: 1 },
+        ...selectedScents.map(s => ({ id: s.variantId, quantity: 1 }))
+      ];
+
       const cartSectionIds = Array.from(document.querySelectorAll('cart-items-component'))
         .map(el => el.dataset.sectionId)
         .filter(Boolean);
-      if (cartSectionIds.length) formData.append('sections', cartSectionIds.join(','));
+
+      const body = { items };
+      if (cartSectionIds.length) body.sections = cartSectionIds.join(',');
 
       try {
         const res = await fetch('/cart/add.js', {
           method:  'POST',
-          headers: { 'X-Requested-With': 'XMLHttpRequest' },
-          body:    formData,
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: JSON.stringify(body),
         });
         const data = await res.json();
 
@@ -438,14 +442,12 @@
           throw new Error(data.description || data.message || 'Could not add to cart.');
         }
 
-        // Notify theme — cart drawer listens for cart:update and opens itself
         document.dispatchEvent(new CustomEvent('cart:update', {
           bubbles: true,
           detail: {
             resource: data,
             data: {
               source:    'candle-flight',
-              variantId: variantIdInput.value,
               itemCount: data.item_count,
               sections:  data.sections || {},
             },
@@ -464,8 +466,6 @@
       }
     });
 
-    // Initialize
-    syncScent3Input();
     updateUI();
   })();
 </script>
@@ -474,6 +474,14 @@
 {
   "name": "Candle Flight",
   "tag": "section",
-  "class": "section"
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-a6e395d7-0656-4f8f-a7c3-180e034be4c1"
+    }
+  ]
 }
 {% endschema %}
