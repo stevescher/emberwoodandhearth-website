@@ -1,0 +1,453 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign candles_collection = collections['candles']
+  assign initial_required_count = 2
+  if current_variant.title contains 'Three'
+    assign initial_required_count = 3
+  endif
+-%}
+
+<script type="application/json" id="cf-variant-data-{{ section.id }}">
+  [
+    {%- for variant in product.variants -%}
+      {
+        "id": {{ variant.id }},
+        "title": {{ variant.title | json }},
+        "scentCount": {% if variant.title contains 'Three' %}3{% else %}2{% endif %},
+        "available": {{ variant.available }},
+        "featuredImageSrc": {% if variant.featured_image %}{{ variant.featured_image | image_url: width: 900 | json }}{% else %}null{% endif %}
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+</script>
+
+<div class="cf-page" id="candle-flight-{{ section.id }}">
+
+  <div class="cf-media">
+    {%- assign display_image = current_variant.featured_image | default: product.featured_image -%}
+    {%- if display_image -%}
+      <img
+        id="cf-img-{{ section.id }}"
+        src="{{ display_image | image_url: width: 900 }}"
+        alt="{{ display_image.alt | escape | default: product.title | escape }}"
+        loading="eager"
+        class="cf-media__img"
+        width="{{ display_image.width }}"
+        height="{{ display_image.height }}"
+      >
+    {%- endif -%}
+  </div>
+
+  <div class="cf-details">
+    <h1 class="cf-product-title">{{ product.title | escape }}</h1>
+
+    <div class="cf-price">
+      {%- render 'price', product_resource: product -%}
+    </div>
+
+    {%- unless product.has_only_default_variant -%}
+      <div class="cf-variants" role="group" aria-label="Select size">
+        {%- for variant in product.variants -%}
+          <button
+            type="button"
+            class="cf-variant-btn{% if variant == current_variant %} is-active{% endif %}"
+            data-variant-id="{{ variant.id }}"
+            aria-pressed="{{ variant == current_variant }}"
+          >{{ variant.title | escape }}</button>
+        {%- endfor -%}
+      </div>
+    {%- endunless -%}
+
+    <form id="cf-form-{{ section.id }}" novalidate>
+      <input type="hidden" id="cf-variant-id-{{ section.id }}" name="id" value="{{ current_variant.id }}">
+      <input type="hidden" name="quantity" value="1">
+      <input type="hidden" id="cf-scent-1-{{ section.id }}" name="properties[Scent 1]" value="">
+      <input type="hidden" id="cf-scent-2-{{ section.id }}" name="properties[Scent 2]" value="">
+      {%- comment -%} Scent 3 input is added/removed dynamically by JS for Three-Candles variant {%- endcomment -%}
+
+      <p class="cf-counter" aria-live="polite">
+        <span id="cf-count-{{ section.id }}">0</span> of <span id="cf-req-{{ section.id }}">{{ initial_required_count }}</span> scents selected
+      </p>
+
+      <div
+        class="cf-scent-grid"
+        id="cf-grid-{{ section.id }}"
+        role="group"
+        aria-label="Choose your scents"
+      >
+        {%- for scent in candles_collection.products -%}
+          <label class="cf-scent-item">
+            <input type="checkbox" class="cf-cb" value="{{ scent.title | escape }}">
+            <span class="cf-scent-name">{{ scent.title | escape }}</span>
+          </label>
+        {%- else -%}
+          <p class="cf-empty">No scents found. Please add products to the Candles collection in Shopify admin.</p>
+        {%- endfor -%}
+      </div>
+
+      <p class="cf-error" id="cf-err-{{ section.id }}" role="alert" hidden></p>
+
+      <button
+        type="submit"
+        class="cf-atc button"
+        id="cf-atc-{{ section.id }}"
+        disabled
+      >
+        <span id="cf-atc-text-{{ section.id }}">Select your scents</span>
+      </button>
+    </form>
+
+    {%- if product.description != blank -%}
+      <div class="cf-description rte">{{ product.description }}</div>
+    {%- endif -%}
+  </div>
+
+</div>
+
+{% stylesheet %}
+.cf-page {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem max(1.5rem, var(--spacing-page-inline, 1.5rem));
+  max-width: var(--max-width-content, 1280px);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media (min-width: 750px) {
+  .cf-page {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+}
+
+.cf-media__img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  object-fit: cover;
+}
+
+.cf-product-title {
+  font-size: 1.75rem;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+  font-family: var(--font-body--family);
+  font-weight: 600;
+  color: var(--color-foreground);
+}
+
+.cf-price {
+  margin-bottom: 1rem;
+}
+
+.cf-variants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.cf-variant-btn {
+  padding: 0.5rem 1.25rem;
+  border: 2px solid var(--color-foreground);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-foreground);
+  font-family: var(--font-body--family);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1;
+}
+
+.cf-variant-btn.is-active {
+  background: var(--color-foreground);
+  color: var(--color-background);
+}
+
+.cf-counter {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+  color: var(--color-foreground);
+}
+
+.cf-scent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.cf-scent-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  border: 1.5px solid rgba(128, 128, 128, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  user-select: none;
+}
+
+.cf-scent-item:has(.cf-cb:checked) {
+  border-color: var(--color-foreground);
+  background: rgba(128, 128, 128, 0.08);
+}
+
+.cf-scent-item:has(.cf-cb:disabled:not(:checked)) {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cf-cb {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  accent-color: var(--color-foreground);
+  cursor: inherit;
+}
+
+.cf-scent-name {
+  font-size: 0.875rem;
+  font-family: var(--font-body--family);
+  color: var(--color-foreground);
+  line-height: 1.3;
+}
+
+.cf-empty {
+  font-size: 0.875rem;
+  color: var(--color-foreground);
+  opacity: 0.6;
+}
+
+.cf-error {
+  color: #b91c1c;
+  font-size: 0.875rem;
+  margin: 0 0 0.75rem;
+}
+
+.cf-atc {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.cf-atc:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+
+.cf-description {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.2);
+  font-size: 0.95rem;
+  color: var(--color-foreground);
+}
+{% endstylesheet %}
+
+<script>
+  (function () {
+    const sid = '{{ section.id }}';
+
+    const variantData = JSON.parse(
+      document.getElementById('cf-variant-data-' + sid).textContent
+    );
+
+    const form           = document.getElementById('cf-form-' + sid);
+    const variantIdInput = document.getElementById('cf-variant-id-' + sid);
+    const scent1Input    = document.getElementById('cf-scent-1-' + sid);
+    const scent2Input    = document.getElementById('cf-scent-2-' + sid);
+    const countEl        = document.getElementById('cf-count-' + sid);
+    const reqEl          = document.getElementById('cf-req-' + sid);
+    const atcBtn         = document.getElementById('cf-atc-' + sid);
+    const atcText        = document.getElementById('cf-atc-text-' + sid);
+    const errEl          = document.getElementById('cf-err-' + sid);
+    const grid           = document.getElementById('cf-grid-' + sid);
+    const variantBtns    = document.querySelectorAll('#candle-flight-' + sid + ' .cf-variant-btn');
+    const productImg     = document.getElementById('cf-img-' + sid);
+
+    let selectedScents = [];
+    let requiredCount  = parseInt(reqEl.textContent, 10);
+    let scent3Input    = null;
+
+    function getCheckboxes() {
+      return Array.from(grid.querySelectorAll('.cf-cb'));
+    }
+
+    function syncScent3Input() {
+      if (requiredCount === 3 && !scent3Input) {
+        scent3Input = document.createElement('input');
+        scent3Input.type = 'hidden';
+        scent3Input.name = 'properties[Scent 3]';
+        scent3Input.value = '';
+        form.insertBefore(scent3Input, errEl);
+      } else if (requiredCount !== 3 && scent3Input) {
+        scent3Input.remove();
+        scent3Input = null;
+      }
+    }
+
+    function syncHiddenInputs() {
+      scent1Input.value = selectedScents[0] || '';
+      scent2Input.value = selectedScents[1] || '';
+      if (scent3Input) scent3Input.value = selectedScents[2] || '';
+    }
+
+    function updateUI() {
+      countEl.textContent = selectedScents.length;
+      reqEl.textContent   = requiredCount;
+
+      const complete   = selectedScents.length === requiredCount;
+      atcBtn.disabled  = !complete;
+      atcText.textContent = complete ? 'Add to cart' : 'Select your scents';
+
+      const maxReached = selectedScents.length >= requiredCount;
+      getCheckboxes().forEach(cb => {
+        cb.disabled = maxReached && !cb.checked;
+      });
+    }
+
+    function resetSelections() {
+      selectedScents = [];
+      getCheckboxes().forEach(cb => {
+        cb.checked  = false;
+        cb.disabled = false;
+      });
+      syncHiddenInputs();
+      updateUI();
+    }
+
+    // Variant button clicks
+    variantBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const variantId = btn.dataset.variantId;
+        const variant   = variantData.find(v => String(v.id) === variantId);
+        if (!variant) return;
+
+        variantBtns.forEach(b => {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-pressed', 'true');
+
+        variantIdInput.value = variantId;
+        requiredCount = variant.scentCount;
+
+        if (productImg && variant.featuredImageSrc) {
+          productImg.src = variant.featuredImageSrc;
+        }
+
+        syncScent3Input();
+        resetSelections();
+      });
+    });
+
+    // Checkbox interaction (event delegation)
+    grid.addEventListener('change', e => {
+      const cb = e.target;
+      if (!cb.classList.contains('cf-cb')) return;
+
+      if (cb.checked) {
+        if (selectedScents.length < requiredCount) {
+          selectedScents.push(cb.value);
+        } else {
+          cb.checked = false;
+          return;
+        }
+      } else {
+        selectedScents = selectedScents.filter(s => s !== cb.value);
+      }
+
+      syncHiddenInputs();
+      updateUI();
+    });
+
+    // Form submit — AJAX add to cart, integrated with theme cart drawer
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (selectedScents.length !== requiredCount) return;
+
+      const previousText = atcText.textContent;
+      atcBtn.disabled     = true;
+      atcText.textContent = 'Adding...';
+      errEl.hidden        = true;
+
+      const properties = {
+        'Scent 1': selectedScents[0],
+        'Scent 2': selectedScents[1],
+      };
+      if (requiredCount === 3) properties['Scent 3'] = selectedScents[2];
+
+      // Collect cart section IDs so the theme can morph-update the drawer
+      const cartSectionIds = Array.from(document.querySelectorAll('cart-items-component'))
+        .map(el => el.dataset.sectionId)
+        .filter(Boolean);
+
+      const payload = {
+        id:         Number(variantIdInput.value),
+        quantity:   1,
+        properties,
+      };
+      if (cartSectionIds.length) payload.sections = cartSectionIds.join(',');
+
+      try {
+        const res  = await fetch('/cart/add.js', {
+          method:  'POST',
+          headers: {
+            'Content-Type':    'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+
+        if (!res.ok || data.status) {
+          throw new Error(data.description || data.message || 'Could not add to cart.');
+        }
+
+        // Notify theme — cart drawer listens for cart:update and opens itself
+        document.dispatchEvent(new CustomEvent('cart:update', {
+          bubbles: true,
+          detail: {
+            resource: data,
+            data: {
+              source:    'candle-flight',
+              variantId: variantIdInput.value,
+              itemCount: data.item_count,
+              sections:  data.sections || {},
+            },
+          },
+        }));
+
+        resetSelections();
+        atcText.textContent = 'Added to cart!';
+        setTimeout(() => { atcText.textContent = 'Select your scents'; }, 2500);
+
+      } catch (err) {
+        errEl.textContent   = err.message || 'Something went wrong. Please try again.';
+        errEl.hidden        = false;
+        atcText.textContent = previousText;
+        atcBtn.disabled     = selectedScents.length !== requiredCount;
+      }
+    });
+
+    // Initialize
+    syncScent3Input();
+    updateUI();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Candle Flight",
+  "tag": "section",
+  "class": "section"
+}
+{% endschema %}

@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "product-candle-flight",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
