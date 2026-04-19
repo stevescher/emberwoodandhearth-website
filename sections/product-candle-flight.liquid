@@ -15,6 +15,8 @@
         "title": {{ variant.title | json }},
         "scentCount": {% if variant.title contains 'Three' %}3{% else %}2{% endif %},
         "available": {{ variant.available }},
+        "formattedPrice": {{ variant.price | money | json }},
+        "formattedCompareAtPrice": {% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money | json }}{% else %}null{% endif %},
         "featuredImageSrc": {% if variant.featured_image %}{{ variant.featured_image | image_url: width: 900 | json }}{% else %}null{% endif %}
       }{% unless forloop.last %},{% endunless %}
     {%- endfor -%}
@@ -42,7 +44,12 @@
     <h1 class="cf-product-title">{{ product.title | escape }}</h1>
 
     <div class="cf-price">
-      {%- render 'price', product_resource: product -%}
+      <span id="cf-price-{{ section.id }}" class="cf-price__current">{{ current_variant.price | money }}</span>
+      {%- if current_variant.compare_at_price > current_variant.price -%}
+        <s id="cf-compare-price-{{ section.id }}" class="cf-price__compare">{{ current_variant.compare_at_price | money }}</s>
+      {%- else -%}
+        <s id="cf-compare-price-{{ section.id }}" class="cf-price__compare" hidden></s>
+      {%- endif -%}
     </div>
 
     {%- unless product.has_only_default_variant -%}
@@ -140,7 +147,23 @@
 }
 
 .cf-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
   margin-bottom: 1rem;
+}
+
+.cf-price__current {
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-family: var(--font-body--family);
+  color: var(--color-foreground);
+}
+
+.cf-price__compare {
+  font-size: 1rem;
+  color: rgba(128, 128, 128, 0.7);
+  text-decoration: line-through;
 }
 
 .cf-variants {
@@ -271,6 +294,8 @@
     const grid           = document.getElementById('cf-grid-' + sid);
     const variantBtns    = document.querySelectorAll('#candle-flight-' + sid + ' .cf-variant-btn');
     const productImg     = document.getElementById('cf-img-' + sid);
+    const priceEl        = document.getElementById('cf-price-' + sid);
+    const comparePriceEl = document.getElementById('cf-compare-price-' + sid);
 
     let selectedScents = [];
     let requiredCount  = parseInt(reqEl.textContent, 10);
@@ -342,6 +367,14 @@
 
         if (productImg && variant.featuredImageSrc) {
           productImg.src = variant.featuredImageSrc;
+        }
+
+        priceEl.textContent = variant.formattedPrice;
+        if (variant.formattedCompareAtPrice) {
+          comparePriceEl.textContent = variant.formattedCompareAtPrice;
+          comparePriceEl.hidden = false;
+        } else {
+          comparePriceEl.hidden = true;
         }
 
         syncScent3Input();
