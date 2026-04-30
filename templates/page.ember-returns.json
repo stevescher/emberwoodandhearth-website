@@ -273,7 +273,7 @@
         "text_iywVfq": {
           "type": "text",
           "settings": {
-            "text": "<p>Ember Returns is available wherever you find us in person. Follow us on social or check back here for our upcoming market and event schedule.</p><p>Questions? Reach us Reach us through our <a href=\"https://www.emberwoodandhearth.com/pages/contact\" title=\"Contact Page\">Contact Page</a>. We're a small team and we'll get back to you within a day or two.</p>"
+            "text": "<p>Ember Returns is available wherever you find us in person. Follow us on social or check back here for our upcoming market and event schedule.</p><p>Questions? Reach us Reach us through our <a href=\"/pages/contact\" title=\"Contact Page\">Contact Page</a>. We're a small team and we'll get back to you within a day or two.</p>"
           }
         }
       },
