@@ -1,0 +1,693 @@
+{% doc %}
+  @prompt
+    Create a new Multicolumn section where each column block has a built-in SVG icon field, a heading, and a text area. The SVG icon should display above the heading, be customizable in size (around 48px default) and color, and render cleanly with a transparent background. The layout should be a clean, evenly spaced grid matching a premium home fragrance brand aesthetic.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-icon-multicolumn-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px;
+  }
+
+  .ai-icon-multicolumn-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-icon-multicolumn-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: {{ block.settings.column_gap }}px;
+    margin-top: {{ block.settings.content_spacing }}px;
+  }
+
+  .ai-icon-multicolumn-column-{{ ai_gen_id }} {
+    text-align: {{ block.settings.text_alignment }};
+    display: flex;
+    flex-direction: column;
+  }
+
+  {% if block.settings.text_alignment == 'center' %}
+    .ai-icon-multicolumn-column-{{ ai_gen_id }} {
+      align-items: center;
+    }
+  {% elsif block.settings.text_alignment == 'right' %}
+    .ai-icon-multicolumn-column-{{ ai_gen_id }} {
+      align-items: flex-end;
+    }
+  {% else %}
+    .ai-icon-multicolumn-column-{{ ai_gen_id }} {
+      align-items: flex-start;
+    }
+  {% endif %}
+
+  .ai-icon-multicolumn-icon-wrapper-{{ ai_gen_id }} {
+    margin-bottom: {{ block.settings.icon_spacing }}px;
+  }
+
+  .ai-icon-multicolumn-icon-wrapper-{{ ai_gen_id }} svg {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    display: block;
+  }
+
+  .ai-icon-multicolumn-heading-{{ ai_gen_id }} {
+    margin: 0 0 {{ block.settings.heading_spacing }}px;
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: {{ block.settings.heading_weight }};
+    color: {{ block.settings.heading_color }};
+    line-height: 1.3;
+  }
+
+  .ai-icon-multicolumn-text-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.6;
+  }
+
+  .ai-icon-multicolumn-section-heading-{{ ai_gen_id }} {
+    text-align: {{ block.settings.section_heading_alignment }};
+    margin: 0 0 {{ block.settings.section_heading_spacing }}px;
+    font-size: {{ block.settings.section_heading_size }}px;
+    font-weight: {{ block.settings.section_heading_weight }};
+    color: {{ block.settings.section_heading_color }};
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-icon-multicolumn-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_tablet }}, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-icon-multicolumn-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+      gap: {{ block.settings.column_gap | times: 0.75 }}px;
+    }
+
+    .ai-icon-multicolumn-icon-wrapper-{{ ai_gen_id }} svg {
+      width: {{ block.settings.icon_size | times: 0.85 }}px;
+      height: {{ block.settings.icon_size | times: 0.85 }}px;
+    }
+
+    .ai-icon-multicolumn-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.9 }}px;
+    }
+
+    .ai-icon-multicolumn-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size | times: 0.95 }}px;
+    }
+  }
+{% endstyle %}
+
+<icon-multicolumn-{{ ai_gen_id }} class="ai-icon-multicolumn-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-icon-multicolumn-container-{{ ai_gen_id }}">
+    {% if block.settings.section_heading != blank %}
+      <h2 class="ai-icon-multicolumn-section-heading-{{ ai_gen_id }}">
+        {{ block.settings.section_heading }}
+      </h2>
+    {% endif %}
+
+    <div class="ai-icon-multicolumn-grid-{{ ai_gen_id }}">
+      {% for i in (1..6) %}
+        {% liquid
+          assign column_enabled_key = 'column_' | append: i | append: '_enabled'
+          assign column_svg_key = 'column_' | append: i | append: '_svg'
+          assign column_icon_color_key = 'column_' | append: i | append: '_icon_color'
+          assign column_heading_key = 'column_' | append: i | append: '_heading'
+          assign column_text_key = 'column_' | append: i | append: '_text'
+
+          assign column_enabled = block.settings[column_enabled_key]
+          assign column_svg = block.settings[column_svg_key]
+          assign column_icon_color = block.settings[column_icon_color_key]
+          assign column_heading = block.settings[column_heading_key]
+          assign column_text = block.settings[column_text_key]
+        %}
+
+        {% if column_enabled %}
+          <div class="ai-icon-multicolumn-column-{{ ai_gen_id }}">
+            {% if column_svg != blank %}
+              <div class="ai-icon-multicolumn-icon-wrapper-{{ ai_gen_id }}" style="color: {{ column_icon_color }};">
+                {{ column_svg }}
+              </div>
+            {% endif %}
+
+            {% if column_heading != blank %}
+              <h3 class="ai-icon-multicolumn-heading-{{ ai_gen_id }}">
+                {{ column_heading }}
+              </h3>
+            {% endif %}
+
+            {% if column_text != blank %}
+              <div class="ai-icon-multicolumn-text-{{ ai_gen_id }}">
+                {{ column_text }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</icon-multicolumn-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class IconMulticolumn{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.applyIconColors();
+      }
+
+      applyIconColors() {
+        const iconWrappers = this.querySelectorAll('.ai-icon-multicolumn-icon-wrapper-{{ ai_gen_id }}');
+        iconWrappers.forEach((wrapper) => {
+          const svg = wrapper.querySelector('svg');
+          if (svg) {
+            const color = wrapper.style.color;
+            svg.style.fill = color;
+            svg.style.stroke = 'none';
+            
+            const paths = svg.querySelectorAll('path, circle, rect, polygon, polyline, ellipse, line');
+            paths.forEach((path) => {
+              if (!path.hasAttribute('fill') || path.getAttribute('fill') !== 'none') {
+                path.style.fill = color;
+              }
+              if (path.hasAttribute('stroke') && path.getAttribute('stroke') !== 'none') {
+                path.style.stroke = color;
+              }
+            });
+          }
+        });
+      }
+    }
+
+    customElements.define('icon-multicolumn-{{ ai_gen_id }}', IconMulticolumn{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Icon multicolumn",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "section_heading_size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "section_heading_weight",
+      "label": "Heading weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "section_heading_color",
+      "label": "Heading color",
+      "default": "#121212"
+    },
+    {
+      "type": "select",
+      "id": "section_heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "section_heading_spacing",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Spacing below heading",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Columns on desktop",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Columns on tablet",
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 16,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Gap between columns",
+      "default": 40
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "label": "Container width",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "content_spacing",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Content spacing",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Icon style"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 24,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "icon_spacing",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Spacing below icon",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Column heading style"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Spacing below heading",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Column text style"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#121212"
+    },
+    {
+      "type": "header",
+      "content": "Column 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "column_1_enabled",
+      "label": "Enable column 1",
+      "default": true
+    },
+    {
+      "type": "html",
+      "id": "column_1_svg",
+      "label": "SVG icon code"
+    },
+    {
+      "type": "color",
+      "id": "column_1_icon_color",
+      "label": "Icon color",
+      "default": "#121212"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "column_1_heading",
+      "label": "Heading",
+      "default": "Feature heading"
+    },
+    {
+      "type": "textarea",
+      "id": "column_1_text",
+      "label": "Text",
+      "default": "Share details about your product or service."
+    },
+    {
+      "type": "header",
+      "content": "Column 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "column_2_enabled",
+      "label": "Enable column 2",
+      "default": true
+    },
+    {
+      "type": "html",
+      "id": "column_2_svg",
+      "label": "SVG icon code"
+    },
+    {
+      "type": "color",
+      "id": "column_2_icon_color",
+      "label": "Icon color",
+      "default": "#121212"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "column_2_heading",
+      "label": "Heading",
+      "default": "Feature heading"
+    },
+    {
+      "type": "textarea",
+      "id": "column_2_text",
+      "label": "Text",
+      "default": "Share details about your product or service."
+    },
+    {
+      "type": "header",
+      "content": "Column 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "column_3_enabled",
+      "label": "Enable column 3",
+      "default": true
+    },
+    {
+      "type": "html",
+      "id": "column_3_svg",
+      "label": "SVG icon code"
+    },
+    {
+      "type": "color",
+      "id": "column_3_icon_color",
+      "label": "Icon color",
+      "default": "#121212"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "column_3_heading",
+      "label": "Heading",
+      "default": "Feature heading"
+    },
+    {
+      "type": "textarea",
+      "id": "column_3_text",
+      "label": "Text",
+      "default": "Share details about your product or service."
+    },
+    {
+      "type": "header",
+      "content": "Column 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "column_4_enabled",
+      "label": "Enable column 4",
+      "default": false
+    },
+    {
+      "type": "html",
+      "id": "column_4_svg",
+      "label": "SVG icon code"
+    },
+    {
+      "type": "color",
+      "id": "column_4_icon_color",
+      "label": "Icon color",
+      "default": "#121212"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "column_4_heading",
+      "label": "Heading",
+      "default": "Feature heading"
+    },
+    {
+      "type": "textarea",
+      "id": "column_4_text",
+      "label": "Text",
+      "default": "Share details about your product or service."
+    },
+    {
+      "type": "header",
+      "content": "Column 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "column_5_enabled",
+      "label": "Enable column 5",
+      "default": false
+    },
+    {
+      "type": "html",
+      "id": "column_5_svg",
+      "label": "SVG icon code"
+    },
+    {
+      "type": "color",
+      "id": "column_5_icon_color",
+      "label": "Icon color",
+      "default": "#121212"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "column_5_heading",
+      "label": "Heading",
+      "default": "Feature heading"
+    },
+    {
+      "type": "textarea",
+      "id": "column_5_text",
+      "label": "Text",
+      "default": "Share details about your product or service."
+    },
+    {
+      "type": "header",
+      "content": "Column 6"
+    },
+    {
+      "type": "checkbox",
+      "id": "column_6_enabled",
+      "label": "Enable column 6",
+      "default": false
+    },
+    {
+      "type": "html",
+      "id": "column_6_svg",
+      "label": "SVG icon code"
+    },
+    {
+      "type": "color",
+      "id": "column_6_icon_color",
+      "label": "Icon color",
+      "default": "#121212"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "column_6_heading",
+      "label": "Heading",
+      "default": "Feature heading"
+    },
+    {
+      "type": "textarea",
+      "id": "column_6_text",
+      "label": "Text",
+      "default": "Share details about your product or service."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon multicolumn"
+    }
+  ]
+}
+{% endschema %}

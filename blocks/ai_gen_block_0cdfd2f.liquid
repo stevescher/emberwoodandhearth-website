@@ -1,0 +1,42 @@
+{% doc %}
+  @prompt
+    Add a custom CSS block that targets the images inside the Multicolumn section with section ID "template--27091609583895__multicolumn_6pRtB7" and sets them to a small icon size of around 48px wide and tall, so they appear close to the size of the surrounding text.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-custom-css-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+
+  #shopify-section-template--27091609583895__multicolumn_6pRtB7 img {
+    width: 48px !important;
+    height: 48px !important;
+    object-fit: contain;
+  }
+{% endstyle %}
+
+<div class="ai-custom-css-{{ ai_gen_id }}" {{ block.shopify_attributes }}></div>
+
+{% schema %}
+{
+  "name": "Custom CSS",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Custom styling"
+    },
+    {
+      "type": "paragraph",
+      "content": "This block applies custom CSS to images in the Multicolumn section (template--27091609583895__multicolumn_6pRtB7), setting them to 48px × 48px icon size."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom CSS"
+    }
+  ]
+}
+{% endschema %}

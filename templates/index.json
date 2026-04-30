@@ -9,1111 +9,321 @@
  */
 {
   "sections": {
-    "hero_iLBwPd": {
-      "type": "hero",
+    "slideshow_WKgy6Y": {
+      "type": "slideshow",
       "blocks": {
-        "group_mATTUY": {
-          "type": "group",
-          "name": "t:names.group",
+        "slide_kwbreN": {
+          "type": "slide",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "group_U86Qji": {
-              "type": "group",
-              "name": "t:names.group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 0,
-                "width": "custom",
-                "custom_width": 60,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "text_nptTQe": {
-                  "type": "text",
-                  "name": "Heading",
-                  "settings": {
-                    "text": "",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "custom",
-                    "font": "var(--font-accent--family)",
-                    "font_size": "1.5rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "text_m9AcWC": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h2>WHO WE ARE</h2><h6>Emberwood & Hearth is a small-batch artisan home goods brand built around wood, warmth, and handmade craft. We make two things: richly scented wood wick candles and handcrafted woodwork pieces. Both are made by hand, in small quantities, with natural materials.</h6>",
-                    "width": "fit-content",
-                    "max_width": "none",
-                    "alignment": "left",
-                    "type_preset": "custom",
-                    "font": "var(--font-primary--family)",
-                    "font_size": "",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": true,
-                    "background_color": "#000000b3",
-                    "corner_radius": 16,
-                    "padding-block-start": 0,
-                    "padding-block-end": 20,
-                    "padding-inline-start": 20,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "text_qFifHW": {
-                  "type": "text",
-                  "name": "Text",
-                  "settings": {
-                    "text": "",
-                    "width": "100%",
-                    "max_width": "none",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-primary--family)",
-                    "font_size": "",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "",
-                    "background": true,
-                    "background_color": "#00000082",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 20,
-                    "padding-inline-end": 50
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_nptTQe",
-                "text_m9AcWC",
-                "text_qFifHW"
-              ]
-            }
-          },
-          "block_order": [
-            "group_U86Qji"
-          ]
-        }
-      },
-      "block_order": [
-        "group_mATTUY"
-      ],
-      "name": "t:names.hero",
-      "settings": {
-        "media_type_1": "image",
-        "image_1": "shopify://shop_images/IMG_0192.jpg",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 16,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-5",
-        "toggle_overlay": true,
-        "overlay_color": "rgba(0,0,0,0)",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 0,
-        "padding-block-end": 31
-      }
-    },
-    "section_TCwxR7": {
-      "type": "section",
-      "blocks": {
-        "group_9J8xp4": {
-          "type": "group",
-          "name": "Small Batch",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 16,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "icon_exaNV6": {
-              "type": "icon",
-              "settings": {
-                "icon": "box",
-                "width": 32,
-                "link": "",
-                "open_in_new_tab": false
-              },
-              "blocks": {}
-            },
-            "group_eR9d83": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 4,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "text_pLKNaE": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h2>Small Batch</h2>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "text_g8dEbN": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>We make in small quantities, by hand. Not mass produced. Not warehouse inventory.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_pLKNaE",
-                "text_g8dEbN"
-              ]
-            }
-          },
-          "block_order": [
-            "icon_exaNV6",
-            "group_eR9d83"
-          ]
+            "image": "shopify://shop_images/sampler_product_stacked2.png",
+            "image_overlay_opacity": 30,
+            "heading": "Explore our collections",
+            "heading_size": "h1",
+            "subheading": "Shop our line of hand-crafted products: candles, woodworks, and more.",
+            "button_label": "Shop Now",
+            "link": "shopify://collections",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "bottom-left",
+            "text_alignment": "left",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-5"
+          }
         },
-        "group_cRBTLz": {
-          "type": "group",
-          "name": "Locally Sourced",
+        "slide_XyVehn": {
+          "type": "slide",
           "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 16,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "icon_6hw39G": {
-              "type": "icon",
-              "settings": {
-                "icon": "map_pin",
-                "width": 32,
-                "link": "",
-                "open_in_new_tab": false
-              },
-              "blocks": {}
-            },
-            "group_fLjjnz": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 4,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "text_AJnTRY": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h2>Locally Sourced</h2>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "text_tfAne9": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Our wood is sourced locally. We’re not shipping in exotic materials — we’re working with what’s regional and real.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_AJnTRY",
-                "text_tfAne9"
-              ]
-            }
-          },
-          "block_order": [
-            "icon_6hw39G",
-            "group_fLjjnz"
-          ]
-        },
-        "group_rR9dTy": {
-          "type": "group",
-          "name": "Handmade",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 16,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "icon_X4P6TV": {
-              "type": "icon",
-              "settings": {
-                "icon": "heart",
-                "width": 32,
-                "link": "",
-                "open_in_new_tab": false
-              },
-              "blocks": {}
-            },
-            "group_g7TeiX": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 4,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "text_twMqCx": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h2>Handmade</h2>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "text_F7MDrW": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Both the candles and the woodwork are made by us. This is a two-person operation.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_twMqCx",
-                "text_F7MDrW"
-              ]
-            }
-          },
-          "block_order": [
-            "icon_X4P6TV",
-            "group_g7TeiX"
-          ]
-        },
-        "group_UyJcM9": {
-          "type": "group",
-          "name": "Natural",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 16,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "icon_UWFPzK": {
-              "type": "icon",
-              "settings": {
-                "icon": "leaf",
-                "width": 32,
-                "link": "",
-                "open_in_new_tab": false
-              },
-              "blocks": {}
-            },
-            "group_hqxcft": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 4,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "text_DwaJa9": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>All Natural</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "text_wbAKTe": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Wood. Soy wax. No synthetic fillers, no plastic, nothing that doesn’t belong.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_DwaJa9",
-                "text_wbAKTe"
-              ]
-            }
-          },
-          "block_order": [
-            "icon_UWFPzK",
-            "group_hqxcft"
-          ]
-        }
-      },
-      "block_order": [
-        "group_9J8xp4",
-        "group_cRBTLz",
-        "group_rR9dTy",
-        "group_UyJcM9"
-      ],
-      "name": "t:names.icons_with_text",
-      "settings": {
-        "content_direction": "row",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-a6e395d7-0656-4f8f-a7c3-180e034be4c1",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 70,
-        "padding-block-end": 70
-      }
-    },
-    "divider_gi483y": {
-      "type": "divider",
-      "name": "t:names.divider_section",
-      "settings": {
-        "color_scheme": "scheme-a6e395d7-0656-4f8f-a7c3-180e034be4c1",
-        "section_width": "full-width",
-        "thickness": 1,
-        "corner_radius": "square",
-        "width_percent": 100,
-        "alignment_horizontal": "center",
-        "padding-block-start": 16,
-        "padding-block-end": 16
-      }
-    },
-    "product_list_WczUbq": {
-      "type": "product-list",
-      "blocks": {
-        "button_qRhGNk": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "Shop now",
+            "image": "shopify://shop_images/backporch_product_open_lid.png",
+            "image_overlay_opacity": 30,
+            "heading": "Explore our candles",
+            "heading_size": "h1",
+            "subheading": "Shop our line of hand-poured, 100% soy candles with wood wicks and hand-crafted wood lids.",
+            "button_label": "Shop Now",
             "link": "shopify://collections/candles",
-            "open_in_new_tab": false,
-            "style_class": "button",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "bottom-left",
+            "text_alignment": "left",
+            "text_alignment_mobile": "left",
+            "color_scheme": "scheme-5"
+          }
         },
-        "static-header": {
-          "type": "_product-list-content",
-          "name": "t:names.header",
-          "static": true,
+        "slide_CdrbUe": {
+          "type": "slide",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text_jm3KL7": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h2>{{ closest.collection.title }}</h2>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_list_button_tKBAzn": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "button-secondary",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_list_text_jm3KL7",
-            "product_list_button_tKBAzn"
-          ]
+            "image": "shopify://shop_images/p12.png",
+            "image_overlay_opacity": 30,
+            "heading": "Explore our woodworks",
+            "heading_size": "h1",
+            "subheading": "Shop our line of hand-crafted woodworks: candle trays, whiskey smokers, and more.",
+            "button_label": "Show Now",
+            "link": "shopify://collections/woodworks",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "bottom-left",
+            "text_alignment": "left",
+            "text_alignment_mobile": "left",
+            "color_scheme": "scheme-5"
+          }
         },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
+        "slide_URJBUp": {
+          "type": "slide",
+          "disabled": true,
           "settings": {
-            "product_card_gap": 4,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_card_gallery_eMP7K4": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_title_xtEARD": {
-              "type": "product-title",
-              "name": "t:names.product_title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "center",
-                "type_preset": "custom",
-                "font": "var(--font-heading--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground-heading)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price_k3kz9q": {
-              "type": "price",
-              "name": "t:names.product_price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "center",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "color": "var(--color-foreground)",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_card_gallery_eMP7K4",
-            "product_title_xtEARD",
-            "price_k3kz9q"
-          ]
+            "image": "shopify://shop_images/p5.png",
+            "image_overlay_opacity": 30,
+            "heading": "Explore our woodworks",
+            "heading_size": "h1",
+            "subheading": "Shop our line of hand-crafted woodworks: candle trays, whiskey smokers, and more.",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/woodworks",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "bottom-left",
+            "text_alignment": "left",
+            "text_alignment_mobile": "left",
+            "color_scheme": "scheme-5"
+          }
+        },
+        "slide_JBPGVM": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/wicktrimmerproductwithcandle.png",
+            "image_overlay_opacity": 30,
+            "heading": "Explore our accessories",
+            "heading_size": "h1",
+            "subheading": "Shop our line of accessories including wick trimmers, matches, and more.",
+            "button_label": "Show Now",
+            "link": "shopify://collections/accessories",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "bottom-left",
+            "text_alignment": "left",
+            "text_alignment_mobile": "left",
+            "color_scheme": "scheme-5"
+          }
         }
       },
       "block_order": [
-        "button_qRhGNk"
+        "slide_kwbreN",
+        "slide_XyVehn",
+        "slide_CdrbUe",
+        "slide_URJBUp",
+        "slide_JBPGVM"
       ],
-      "name": "t:names.products_carousel",
+      "name": "t:sections.slideshow.presets.name",
       "settings": {
-        "collection": "candles",
-        "layout_type": "carousel",
-        "carousel_on_mobile": false,
-        "max_products": 6,
-        "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 8,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "circle",
-        "section_width": "page-width",
-        "horizontal_alignment": "center",
-        "gap": 28,
-        "color_scheme": "scheme-a6e395d7-0656-4f8f-a7c3-180e034be4c1",
-        "padding-block-start": 70,
-        "padding-block-end": 70
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "image_behavior": "ambient",
+        "show_text_below": true,
+        "accessibility_info": "Slideshow about our brand"
       }
     },
-    "divider_cj4nKF": {
-      "type": "divider",
-      "name": "t:names.divider_section",
-      "settings": {
-        "color_scheme": "scheme-a6e395d7-0656-4f8f-a7c3-180e034be4c1",
-        "section_width": "full-width",
-        "thickness": 1,
-        "corner_radius": "square",
-        "width_percent": 100,
-        "alignment_horizontal": "center",
-        "padding-block-start": 16,
-        "padding-block-end": 16
-      }
-    },
-    "17754291045c94af10": {
+    "1777147518d68886dc": {
       "type": "_blocks",
       "blocks": {
-        "instafeed_app_block_z4PEjE": {
+        "ai_gen_block_de3bf26_V8bKFa": {
+          "type": "ai_gen_block_de3bf26",
+          "settings": {
+            "section_heading": "",
+            "section_heading_size": 32,
+            "section_heading_weight": "600",
+            "section_heading_color": "#121212",
+            "section_heading_alignment": "center",
+            "section_heading_spacing": 40,
+            "columns_desktop": 4,
+            "columns_tablet": 2,
+            "columns_mobile": "1",
+            "column_gap": 40,
+            "text_alignment": "center",
+            "container_width": 1200,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "content_spacing": 0,
+            "icon_size": 48,
+            "icon_spacing": 20,
+            "heading_size": 18,
+            "heading_weight": "600",
+            "heading_color": "#121212",
+            "heading_spacing": 12,
+            "text_size": 14,
+            "text_color": "#121212",
+            "column_1_enabled": true,
+            "column_1_svg": "<svg class=\"icon-block__media icon-block-AQnRFMmtEZU84Q1Rqa__icon_exaNV6 icon-default\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewbox=\"0 0 20 20\">\n\n\n<path d=\"M9.69502 0.6786C9.91338 0.601796 10.1516 0.603123 10.3691 0.682353L18.2151 3.54058C18.61 3.68445 18.8728 4.05988 18.8728 4.48018V14.4287C18.8728 14.8074 18.6588 15.1537 18.32 15.3231L10.4731 19.2465C10.196 19.385 9.87022 19.3873 9.59117 19.2526L1.45405 15.3244C1.10843 15.1576 0.888794 14.8076 0.888794 14.4239V4.48434C0.888794 4.05997 1.15665 3.68181 1.55699 3.541L9.69502 0.6786ZM6.07999 3.01017L2.5346 4.25719L10.149 7.63545L13.5692 6.118L6.07999 3.01017ZM6.78606 2.76183L14.1997 5.83828L17.5367 4.35774L10.0268 1.62195L6.78606 2.76183ZM1.88879 14.4239L1.88879 5.06467L9.64898 8.50762V18.1701L1.88879 14.4239ZM17.8728 14.4287L10.649 18.0405V8.50762L17.8728 5.30263V14.4287Z\" fill-rule=\"evenodd\"></path></svg>",
+            "column_1_icon_color": "#121212",
+            "column_1_heading": "Small Batch",
+            "column_1_text": "We make in small quantities, by hand. Not mass produced. Not warehouse inventory.",
+            "column_2_enabled": true,
+            "column_2_svg": "<svg class=\"icon-block__media icon-block-AMkhyWEFFL3dJditOa__icon_6hw39G icon-default\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewbox=\"0 0 20 20\">\n\n\n<path d=\"M9.91038 18.5904L14.9458 9.80988C17.1744 5.9237 14.4213 1.03316 10.004 1.03316C5.61856 1.03316 2.85676 5.85475 5.01217 9.74644L9.91038 18.5904ZM10.004 0C4.84496 0 1.59264 5.67261 4.13039 10.2547L9.34236 19.6651C9.58751 20.1078 10.2108 20.1126 10.4625 19.6737L15.82 10.3316C18.4445 5.75498 15.2016 0 10.004 0Z\" fill-rule=\"evenodd\"></path>\n    <path d=\"M12.9997 6.79602C12.9997 8.5559 11.6011 9.98256 9.87597 9.98256C8.1508 9.98256 6.75228 8.5559 6.75228 6.79602C6.75228 5.03615 8.1508 3.60949 9.87597 3.60949C11.6011 3.60949 12.9997 5.03615 12.9997 6.79602ZM9.87597 8.9494C11.0418 8.9494 11.9869 7.9853 11.9869 6.79602C11.9869 5.60675 11.0418 4.64265 9.87597 4.64265C8.71015 4.64265 7.76506 5.60675 7.76506 6.79602C7.76506 7.9853 8.71015 8.9494 9.87597 8.9494Z\"></path></svg>",
+            "column_2_icon_color": "#121212",
+            "column_2_heading": "Locally Sourced",
+            "column_2_text": "Our wood is sourced locally. We’re not shipping in exotic materials — we’re working with what’s regional and real.",
+            "column_3_enabled": true,
+            "column_3_svg": "<svg class=\"icon-block__media icon-block-AODlkZGZoKzdDbzZ1L__icon_X4P6TV icon-default\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewbox=\"0 0 20 20\">\n\n\n<path d=\"M10 5.2393L8.5149 3.77392C6.79996 2.08174 4.01945 2.08174 2.30451 3.77392C0.589562 5.4661 0.589563 8.2097 2.30451 9.90188L10 17.4952L17.6955 9.90188C19.4104 8.2097 19.4104 5.4661 17.6955 3.77392C15.9805 2.08174 13.2 2.08174 11.4851 3.77392L10 5.2393ZM10.765 3.06343C12.8777 0.978857 16.3029 0.978856 18.4155 3.06343C20.5282 5.148 20.5282 8.52779 18.4155 10.6124L10.72 18.2057C10.3224 18.5981 9.67763 18.5981 9.27996 18.2057L1.58446 10.6124C-0.528154 8.52779 -0.528154 5.14801 1.58446 3.06343C3.69708 0.978859 7.12233 0.978858 9.23495 3.06343L10 3.81832L10.765 3.06343Z\" fill-rule=\"evenodd\"></path></svg>",
+            "column_3_icon_color": "#121212",
+            "column_3_heading": "Handmade",
+            "column_3_text": "Both the candles and the woodwork are made by us. This is a two-person operation.",
+            "column_4_enabled": true,
+            "column_4_svg": "<svg class=\"icon-block__media icon-block-AbkRCanpzRTdFVkJha__icon_UWFPzK icon-default\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewbox=\"0 0 20 20\">\n\n\n<path d=\"M18.6307 0.0851008C18.9214 0.143319 19.2573 0.251631 19.499 0.483071C19.7487 0.722288 19.8616 1.06444 19.9202 1.35568C19.9821 1.66275 20.0008 2.00418 20 2.32523C19.9986 2.89096 19.9355 3.45932 19.9011 3.76888C19.8965 3.81064 19.8924 3.8477 19.889 3.8794L19.8885 3.88469C19.7574 5.00604 19.5546 6.53586 19.2559 8.16345C18.9577 9.77538 18.5618 11.5447 18.0423 13.1175L18.0415 13.1198C17.54 14.6143 16.835 16.2292 15.7876 17.2779C12.1807 20.8897 6.31722 20.917 2.70668 17.3017C-0.903844 13.6864 -0.876728 7.8151 2.73025 4.20335C3.77726 3.15495 5.37751 2.44898 6.88416 1.94609L6.88527 1.94573C8.4557 1.42559 10.21 1.02928 11.8328 0.73059C13.4582 0.431407 14.986 0.228254 16.1059 0.097027L16.1111 0.0964089C16.1231 0.0951308 16.1358 0.0937998 16.1492 0.09237C16.4416 0.0610531 17.0517 -0.0042707 17.6652 0.000220251C17.9855 0.00256445 18.3248 0.0238389 18.6307 0.0851008ZM16.2207 1.10269C15.114 1.23241 13.6107 1.4325 12.0155 1.72612C10.4166 2.02043 8.71247 2.40674 7.20334 2.90653C5.72522 3.39993 4.31684 4.04614 3.44505 4.91909C0.229287 8.13911 0.209266 13.3695 3.42148 16.5859C6.63368 19.8024 11.8571 19.7822 15.0728 16.5622C15.9442 15.6897 16.5895 14.2687 17.0829 12.7984C17.5818 11.2879 17.9676 9.5703 18.2616 7.98044C18.5549 6.38318 18.7546 4.8779 18.8841 3.76969C18.8878 3.73473 18.8921 3.69563 18.8969 3.65288C18.9315 3.33899 18.9879 2.82875 18.9891 2.32275C18.9898 2.03445 18.9722 1.76875 18.9293 1.5558C18.8832 1.32703 18.8229 1.23626 18.8002 1.21454C18.7694 1.18504 18.6656 1.12434 18.4325 1.07766C18.2146 1.03402 17.9461 1.01452 17.6578 1.01241C17.1035 1.00835 16.5429 1.06826 16.2505 1.09951C16.2402 1.10061 16.2303 1.10167 16.2207 1.10269Z\"></path>\n    <path d=\"M19.4297 0.501734C19.6261 0.7004 19.6244 1.02084 19.426 1.21747L0.860985 19.6161C0.662582 19.8127 0.342561 19.811 0.146198 19.6124C-0.0501654 19.4137 -0.0485124 19.0933 0.14989 18.8966L18.7149 0.498038C18.9133 0.301414 19.2334 0.303069 19.4297 0.501734Z\"></path>\n    <path d=\"M5.62257 2.4772H6.12801V13.6663H17.3961V14.1724H5.62257V2.4772Z\"></path>\n    <path d=\"M10.1879 1.18752H10.6933L10.6933 9.14731H18.7842V9.65342H10.1879L10.1879 1.18752Z\"></path></svg>",
+            "column_4_icon_color": "#121212",
+            "column_4_heading": "All Natural",
+            "column_4_text": "Wood. Soy wax. No synthetic fillers, no plastic, nothing that doesn’t belong.",
+            "column_5_enabled": false,
+            "column_5_svg": "",
+            "column_5_icon_color": "#121212",
+            "column_5_heading": "Feature heading",
+            "column_5_text": "Share details about your product or service.",
+            "column_6_enabled": false,
+            "column_6_svg": "",
+            "column_6_icon_color": "#121212",
+            "column_6_heading": "Feature heading",
+            "column_6_text": "Share details about your product or service."
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_de3bf26_V8bKFa"
+      ],
+      "settings": {}
+    },
+    "collection_list_JQbatd": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_zHggMh": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "candles"
+          }
+        },
+        "featured_collection_6c3aaG": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "woodworks"
+          }
+        },
+        "featured_collection_GQ9fkf": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "accessories"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_zHggMh",
+        "featured_collection_6c3aaG",
+        "featured_collection_GQ9fkf"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Our Products",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_AKegrx": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_PeCpEJ": {
+          "type": "heading",
+          "settings": {
+            "heading": "Who We Are",
+            "heading_size": "h1"
+          }
+        },
+        "text_MyJJpc": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Emberwood & Hearth is a small-batch artisan home goods brand built around wood, warmth, and handmade craft. We make two things: richly scented wood wick candles and handcrafted woodwork pieces. Both are made by hand, in small quantities, with natural materials.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_PeCpEJ",
+        "text_MyJJpc"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3eb4bd2a-3766-4adc-acef-36dac64c325f",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "image_with_text_6cEnpc": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_7daYk8": {
+          "type": "heading",
+          "settings": {
+            "heading": "Build an experience with our Candle Flight",
+            "heading_size": "h1"
+          }
+        },
+        "text_ihchAg": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Your choice of two or three candles, set in a handcrafted, custom fit tray. Priced as a set - a perfect gift or statement piece for your home.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_WiTEYP": {
+          "type": "button",
+          "settings": {
+            "button_label": "Build a flight",
+            "button_link": "shopify://products/candle-flight",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_7daYk8",
+        "text_ihchAg",
+        "button_WiTEYP"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/p15.png",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "1777149884cbfaac7f": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_MEQyaP": {
           "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
           "settings": {
-            "title": "",
+            "title": "Follow us on Instagram",
             "title_color": "",
             "title_size_v2": 0,
             "alignment": "center",
-            "instafeed_margin_top": 0,
-            "instafeed_margin_bottom": 0,
-            "instafeed_margin_sides": 10,
+            "instafeed_margin_top": 50,
+            "instafeed_margin_bottom": 50,
+            "instafeed_margin_sides": 50,
             "show_instagram_link": true,
             "link_alignment": "center",
             "link_color": "#000000",
@@ -1124,43 +334,19 @@
         }
       },
       "block_order": [
-        "instafeed_app_block_z4PEjE"
+        "instafeed_app_block_MEQyaP"
       ],
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-a6e395d7-0656-4f8f-a7c3-180e034be4c1",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 70,
-        "padding-block-end": 25
+        "include_margins": true
       }
     }
   },
   "order": [
-    "hero_iLBwPd",
-    "section_TCwxR7",
-    "divider_gi483y",
-    "product_list_WczUbq",
-    "divider_cj4nKF",
-    "17754291045c94af10"
+    "slideshow_WKgy6Y",
+    "1777147518d68886dc",
+    "collection_list_JQbatd",
+    "rich_text_AKegrx",
+    "image_with_text_6cEnpc",
+    "1777149884cbfaac7f"
   ]
 }

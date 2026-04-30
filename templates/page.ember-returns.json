@@ -1,0 +1,329 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_with_text_FbhkVe": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_hPiJdJ": {
+          "type": "heading",
+          "settings": {
+            "heading": "Ember Returns",
+            "heading_size": "h0"
+          }
+        },
+        "text_7CKN4t": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every candle we make starts with honest materials — and when the last of the wax is gone, those materials still have value. Ember Returns is our program for giving jars and lids a second life. Bring them back to us at a market or event, and we'll put them back to work. In exchange, you'll take something off the price of your next one.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_hPiJdJ",
+        "text_7CKN4t"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/recycle_candle.png",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "zoom-in",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_PEqUg4": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_dAmzpm": {
+          "type": "heading",
+          "settings": {
+            "heading": "The Idea Behind It",
+            "heading_size": "h1"
+          }
+        },
+        "text_e9RMwp": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We source every jar and every lid with intention. The black matte glass is heavy and considered. The red oak lids are cut, sanded, and finished by hand. When a candle burns down, those vessels don't have to end up in a landfill — they can be cleaned, refinished, and poured again. Ember Returns is our way of closing that loop. It keeps materials in the cycle, reduces what we have to source new, and lets us pass a little of that back to you as a thank-you for bringing them home.</p><p></p><p><strong>A well-made object deserves a second life. Ember Returns is how we make that happen.</strong></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_dAmzpm",
+        "text_e9RMwp"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_8YHhgj": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_YKycHY": {
+          "type": "heading",
+          "settings": {
+            "heading": "How it Works",
+            "heading_size": "h1"
+          }
+        },
+        "text_GzyEmy": {
+          "type": "text",
+          "settings": {
+            "text": "<p>When your candle is finished, clean the jar and lid before bringing them back. Remove all remaining wax and residue — warm water and a paper towel usually does it. Returns that aren't clean or are in poor condition can't be accepted, but we'll always let you know on the spot with no awkwardness.</p><p>Once you've got a clean vessel, bring it back next time you see us at a farmer's market or pop-up. Hand it over at the table — no forms, no shipping, no hassle. We'll check it on the spot and hand you a discount to put toward anything at the market that day, or save it for a future visit.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_YKycHY",
+        "text_GzyEmy"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "multicolumn_pmxUb3": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_zVekkY": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-04-26_at_12.11.42_PM.png",
+            "title": "Clean It",
+            "text": "<p>Remove all wax and residue. Warm water and a paper towel usually does the job.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_gC8eQW": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-04-26_at_12.11.51_PM.png",
+            "title": "Bring It Back",
+            "text": "<p>Find us at a market or event and hand it over at the table. We'll inspect it on the spot.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_HBjqdw": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-04-26_at_12.11.57_PM.png",
+            "title": "Get Your Discount",
+            "text": "<p>Walk away with money off your next purchase — use it that day or save it for next time.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_zVekkY",
+        "column_gC8eQW",
+        "column_HBjqdw"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_R7a4DW": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_w3gzzU": {
+          "type": "column",
+          "settings": {
+            "title": "LID ONLY",
+            "text": "<p>$2 off your next purchase</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_7AfNHy": {
+          "type": "column",
+          "settings": {
+            "title": "JAR ONLY",
+            "text": "<p>$3 off your next purchase</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_bCjbPf": {
+          "type": "column",
+          "settings": {
+            "title": "JARE + LID TOGETHER",
+            "text": "<p>$5 off your purchase</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_w3gzzU",
+        "column_7AfNHy",
+        "column_bCjbPf"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "What your Return is Worth",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_REAQfw": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_8hmYYw": {
+          "type": "heading",
+          "settings": {
+            "heading": "A Few Things to Know",
+            "heading_size": "h1"
+          }
+        },
+        "text_V7BEPJ": {
+          "type": "text",
+          "settings": {
+            "text": "<h3></h3><p>Ember Returns is currently available in person at our farmer's market and pop-up locations — bring it back next time you see us. Returns must be from Emberwood & Hearth candles only, and vessels must be clean and intact. Cracked glass or damaged lids can't be accepted. One return set per customer per visit. Discounts apply to any in-stock product and can be used the same day or saved for a future visit.</p><p>This program is subject to change, though any updates will always be posted here and will never affect discounts already issued.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_8hmYYw",
+        "text_V7BEPJ"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_iRGGjz": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_dHYLPJ": {
+          "type": "heading",
+          "settings": {
+            "heading": "Find Us",
+            "heading_size": "h1"
+          }
+        },
+        "text_iywVfq": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Ember Returns is available wherever you find us in person. Follow us on social or check back here for our upcoming market and event schedule.</p><p>Questions? Reach us Reach us through our <a href=\"https://www.emberwoodandhearth.com/pages/contact\" title=\"Contact Page\">Contact Page</a>. We're a small team and we'll get back to you within a day or two.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_dHYLPJ",
+        "text_iywVfq"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_EC8dBn": {
+      "type": "rich-text",
+      "blocks": {
+        "text_8VXzX9": {
+          "type": "text",
+          "settings": {
+            "text": "<p><em>Where candlelight and woodcraft meet. </em><strong>Emberwood & Hearth</strong></p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_8VXzX9"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_FbhkVe",
+    "rich_text_PEqUg4",
+    "rich_text_8YHhgj",
+    "multicolumn_pmxUb3",
+    "multicolumn_R7a4DW",
+    "rich_text_REAQfw",
+    "rich_text_iRGGjz",
+    "rich_text_EC8dBn"
+  ]
+}
