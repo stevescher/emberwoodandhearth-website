@@ -227,6 +227,153 @@
                     </div>
                   </details>
                 </div>
+              {%- when 'scent_picker' -%}
+                {%- assign candles_col = collections['candles'] -%}
+                {%- assign current_variant = product.selected_or_first_available_variant -%}
+                {%- assign cv_lower = current_variant.title | downcase -%}
+                {%- assign initial_count = 2 -%}
+                {%- if cv_lower contains '3' or cv_lower contains 'three' -%}{%- assign initial_count = 3 -%}{%- endif -%}
+
+                <script type="application/json" id="cf-variant-data-{{ section.id }}">
+                  [{%- for v in product.variants -%}{%- assign vl = v.title | downcase -%}{"id":{{ v.id }},"scentCount":{%- if vl contains '3' or vl contains 'three' -%}3{%- else -%}2{%- endif -%},"trayId":{%- if vl contains '3' or vl contains 'three' -%}{{ block.settings.tray_variant_id_3 | default: '' }}{%- else -%}{{ block.settings.tray_variant_id_2 | default: '' }}{%- endif -%}}{% unless forloop.last %},{% endunless %}{%- endfor -%}]
+                </script>
+
+                <div class="product-form__input js" id="ScentPicker-{{ section.id }}" {{ block.shopify_attributes }}>
+                  <div class="form__label" style="display:flex;justify-content:space-between;align-items:baseline;">
+                    <span>Choose your scents</span>
+                    <span id="cf-counter-{{ section.id }}" class="caption" aria-live="polite">0 of {{ initial_count }} selected</span>
+                  </div>
+                  <div class="cf-pill-grid" id="cf-grid-{{ section.id }}" role="group" aria-label="Choose your scents">
+                    {%- for scent in candles_col.products -%}
+                      <label class="cf-pill">
+                        <input type="checkbox" class="cf-cb visually-hidden" value="{{ scent.title | escape }}" data-variant-id="{{ scent.variants.first.id }}">
+                        <span>{{ scent.title | escape }}</span>
+                      </label>
+                    {%- else -%}
+                      <p class="caption">No scents available — add products to the Candles collection.</p>
+                    {%- endfor -%}
+                  </div>
+                  <p id="cf-err-{{ section.id }}" class="cf-err" role="alert" hidden></p>
+                </div>
+
+                <style>
+                  .cf-pill-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+                  .cf-pill { display: inline-flex; cursor: pointer; }
+                  .cf-pill span {
+                    display: inline-block;
+                    padding: 0.5rem 1.125rem;
+                    border: 0.1rem solid rgba(var(--color-foreground), 0.55);
+                    border-radius: 4rem;
+                    font-size: 1.4rem;
+                    line-height: 1;
+                    color: rgb(var(--color-foreground));
+                    transition: border-color 0.1s, background 0.1s;
+                    cursor: pointer;
+                  }
+                  .cf-pill:has(.cf-cb:checked) span {
+                    border-color: rgb(var(--color-foreground));
+                    background: rgb(var(--color-foreground));
+                    color: rgb(var(--color-background));
+                  }
+                  .cf-pill:has(.cf-cb:disabled:not(:checked)) span { opacity: 0.4; cursor: not-allowed; }
+                  .cf-err { color: rgb(var(--color-error, 176 0 0)); font-size: 1.2rem; margin-top: 0.4rem; }
+                </style>
+
+                <script>
+                  (function() {
+                    const sid         = '{{ section.id }}';
+                    const formId      = '{{ product_form_id }}';
+                    const variantData = JSON.parse(document.getElementById('cf-variant-data-' + sid).textContent);
+                    const grid        = document.getElementById('cf-grid-' + sid);
+                    const ctr         = document.getElementById('cf-counter-' + sid);
+                    const err         = document.getElementById('cf-err-' + sid);
+
+                    let required = {{ initial_count }};
+                    let selected = [];
+
+                    function cbs() { return Array.from(grid.querySelectorAll('.cf-cb')); }
+                    function getAtcBtn() {
+                      const f = document.getElementById(formId);
+                      return f ? f.querySelector('[name="add"]') : null;
+                    }
+                    function refresh() {
+                      ctr.textContent = selected.length + ' of ' + required + ' selected';
+                      const done = selected.length === required;
+                      const btn = getAtcBtn();
+                      if (btn) btn.disabled = !done;
+                      cbs().forEach(cb => { cb.disabled = (selected.length >= required) && !cb.checked; });
+                    }
+                    function reset() {
+                      selected = [];
+                      cbs().forEach(cb => { cb.checked = false; cb.disabled = false; });
+                      refresh();
+                    }
+
+                    // Grid is in DOM immediately — attach listener now
+                    grid.addEventListener('change', e => {
+                      const cb = e.target;
+                      if (!cb.classList.contains('cf-cb')) return;
+                      if (cb.checked) {
+                        if (selected.length < required) {
+                          selected.push({ name: cb.value, variantId: parseInt(cb.dataset.variantId, 10) });
+                        } else { cb.checked = false; return; }
+                      } else {
+                        selected = selected.filter(s => s.name !== cb.value);
+                      }
+                      refresh();
+                    });
+
+                    // Form and ATC button exist only after full DOM parse
+                    document.addEventListener('DOMContentLoaded', () => {
+                      const form = document.getElementById(formId);
+                      if (!form) return;
+
+                      const variantInput = form.querySelector('[name="id"]');
+                      if (variantInput) {
+                        const init = variantData.find(x => x.id === parseInt(variantInput.value, 10));
+                        if (init) required = init.scentCount;
+                        variantInput.addEventListener('change', () => {
+                          const v = variantData.find(x => x.id === parseInt(variantInput.value, 10));
+                          if (v) { required = v.scentCount; reset(); }
+                        });
+                      }
+
+                      form.addEventListener('submit', async e => {
+                        e.preventDefault();
+                        if (selected.length !== required) { err.textContent = 'Please select ' + required + ' scents.'; err.hidden = false; return; }
+                        err.hidden = true;
+
+                        const currentVariantId = parseInt(form.querySelector('[name="id"]').value, 10);
+                        const variantInfo = variantData.find(x => x.id === currentVariantId);
+                        if (!variantInfo || !variantInfo.trayId) { err.textContent = 'Tray not configured. Please contact us.'; err.hidden = false; return; }
+
+                        const btn = getAtcBtn();
+                        const prevText = btn?.textContent?.trim() || 'Add to cart';
+                        if (btn) { btn.disabled = true; btn.textContent = 'Adding…'; }
+
+                        try {
+                          const res = await fetch('/cart/add.js', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+                            body: JSON.stringify({ items: [{ id: variantInfo.trayId, quantity: 1 }, ...selected.map(s => ({ id: s.variantId, quantity: 1 }))] })
+                          });
+                          const data = await res.json();
+                          if (!res.ok || data.status) throw new Error(data.description || data.message || 'Could not add to cart.');
+
+                          document.dispatchEvent(new CustomEvent('cart:update', { bubbles: true, detail: { resource: data, data: { source: 'candle-flight', sections: data.sections || {} } } }));
+                          reset();
+                          if (btn) { btn.textContent = 'Added!'; setTimeout(() => { btn.textContent = prevText; refresh(); }, 2000); }
+                        } catch(ex) {
+                          err.textContent = ex.message || 'Something went wrong.';
+                          err.hidden = false;
+                          if (btn) { btn.textContent = prevText; btn.disabled = selected.length !== required; }
+                        }
+                      });
+
+                      refresh();
+                    });
+                  })();
+                </script>
               {%- when 'quantity_selector' -%}
                 <div
                   id="Quantity-Form-{{ section.id }}"
@@ -925,6 +1072,23 @@
           "default": true,
           "label": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.label",
           "info": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.info"
+        }
+      ]
+    },
+    {
+      "type": "scent_picker",
+      "name": "Scent Picker",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tray_variant_id_2",
+          "label": "2-Candle Tray variant ID"
+        },
+        {
+          "type": "text",
+          "id": "tray_variant_id_3",
+          "label": "3-Candle Tray variant ID"
         }
       ]
     },
