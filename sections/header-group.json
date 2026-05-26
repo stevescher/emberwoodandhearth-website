@@ -14,6 +14,14 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement_tJbBJq": {
+          "type": "announcement",
+          "disabled": true,
+          "settings": {
+            "text": "10% off site wide using code MEMORIALDAY26",
+            "link": ""
+          }
+        },
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
@@ -23,6 +31,7 @@
         }
       },
       "block_order": [
+        "announcement_tJbBJq",
         "announcement-bar-0"
       ],
       "settings": {
