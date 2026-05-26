@@ -277,6 +277,17 @@
                   }
                   .cf-pill:has(.cf-cb:disabled:not(:checked)) span { opacity: 0.4; cursor: not-allowed; }
                   .cf-err { color: rgb(var(--color-error, 176 0 0)); font-size: 1.2rem; margin-top: 0.4rem; }
+
+                  /* Candle Flight uses a custom cart flow that bundles tray + scent variants.
+                     Buy-with-Shop would bypass that and submit only the main variant, so hide
+                     the dynamic checkout elements on this template. show_dynamic_checkout stays
+                     true so the ATC button gets the secondary (outlined) style for visual parity
+                     with standard product pages. */
+                  product-info:has(#ScentPicker-{{ section.id }}) .shopify-payment-button,
+                  product-info:has(#ScentPicker-{{ section.id }}) .product-form__buttons + small,
+                  product-info:has(#ScentPicker-{{ section.id }}) .shopify-payment-button__more-options {
+                    display: none !important;
+                  }
                 </style>
 
                 <script>
@@ -372,6 +383,125 @@
 
                       refresh();
                     });
+                  })();
+                </script>
+              {%- when 'sampler_picker' -%}
+                {%- assign sampler_scents = collections['candles'].products -%}
+                {%- assign sampler_count = block.settings.scent_count | default: 5 -%}
+
+                <div class="product-form__input js" id="SamplerPicker-{{ section.id }}" {{ block.shopify_attributes }}>
+                  <div class="form__label" style="display:flex;justify-content:space-between;align-items:baseline;">
+                    <span>{{ block.settings.label | default: 'Choose your scents' }}</span>
+                    <span id="sp-counter-{{ section.id }}" class="caption" aria-live="polite">0 of {{ sampler_count }} selected</span>
+                  </div>
+                  <div class="sp-pill-grid" id="sp-grid-{{ section.id }}" role="group" aria-label="Choose your scents">
+                    {%- for scent in sampler_scents -%}
+                      <label class="sp-pill">
+                        <input type="checkbox" class="sp-cb visually-hidden" value="{{ scent.title | escape }}">
+                        <span>{{ scent.title | escape }}</span>
+                      </label>
+                    {%- else -%}
+                      <p class="caption">No scents available — add products to the Candles collection.</p>
+                    {%- endfor -%}
+                  </div>
+
+                  {%- for i in (1..sampler_count) -%}
+                    <input type="hidden" name="properties[Scent {{ i }}]" id="sp-prop-{{ section.id }}-{{ i }}" value="" form="{{ product_form_id }}" disabled>
+                  {%- endfor -%}
+                </div>
+
+                <style>
+                  .sp-pill-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+                  .sp-pill { display: inline-flex; cursor: pointer; }
+                  .sp-pill span {
+                    display: inline-block;
+                    padding: 0.5rem 1.125rem;
+                    border: 0.1rem solid rgba(var(--color-foreground), 0.55);
+                    border-radius: 4rem;
+                    font-size: 1.4rem;
+                    line-height: 1;
+                    color: rgb(var(--color-foreground));
+                    transition: border-color 0.1s, background 0.1s;
+                    cursor: pointer;
+                  }
+                  .sp-pill:has(.sp-cb:checked) span {
+                    border-color: rgb(var(--color-foreground));
+                    background: rgb(var(--color-foreground));
+                    color: rgb(var(--color-background));
+                  }
+                  .sp-pill:has(.sp-cb:disabled:not(:checked)) span { opacity: 0.4; cursor: not-allowed; }
+                </style>
+
+                <script>
+                  (function() {
+                    const sid      = '{{ section.id }}';
+                    const formId   = '{{ product_form_id }}';
+                    const required = {{ sampler_count }};
+                    const grid     = document.getElementById('sp-grid-' + sid);
+                    const ctr      = document.getElementById('sp-counter-' + sid);
+                    const props    = [];
+                    for (let i = 1; i <= required; i++) {
+                      props.push(document.getElementById('sp-prop-' + sid + '-' + i));
+                    }
+
+                    let selected = [];
+
+                    function cbs() { return Array.from(grid.querySelectorAll('.sp-cb')); }
+                    function getAtcBtn() {
+                      const f = document.getElementById(formId);
+                      return f ? f.querySelector('[name="add"]') : null;
+                    }
+                    function getDynamicCheckout() {
+                      const f = document.getElementById(formId);
+                      if (!f) return null;
+                      const wrap = f.querySelector('.shopify-payment-button');
+                      return wrap || null;
+                    }
+                    function syncProps() {
+                      props.forEach((el, idx) => {
+                        if (!el) return;
+                        if (selected[idx]) {
+                          el.value = selected[idx];
+                          el.disabled = false;
+                        } else {
+                          el.value = '';
+                          el.disabled = true;
+                        }
+                      });
+                    }
+                    function refresh() {
+                      ctr.textContent = selected.length + ' of ' + required + ' selected';
+                      const done = selected.length === required;
+                      const btn = getAtcBtn();
+                      if (btn) btn.disabled = !done;
+                      const dyn = getDynamicCheckout();
+                      if (dyn) {
+                        dyn.style.pointerEvents = done ? '' : 'none';
+                        dyn.style.opacity = done ? '' : '0.45';
+                        dyn.setAttribute('aria-disabled', done ? 'false' : 'true');
+                      }
+                      cbs().forEach(cb => { cb.disabled = (selected.length >= required) && !cb.checked; });
+                      syncProps();
+                    }
+
+                    grid.addEventListener('change', e => {
+                      const cb = e.target;
+                      if (!cb.classList.contains('sp-cb')) return;
+                      if (cb.checked) {
+                        if (selected.length < required) {
+                          selected.push(cb.value);
+                        } else {
+                          cb.checked = false;
+                          return;
+                        }
+                      } else {
+                        selected = selected.filter(s => s !== cb.value);
+                      }
+                      refresh();
+                    });
+
+                    document.addEventListener('DOMContentLoaded', refresh);
+                    refresh();
                   })();
                 </script>
               {%- when 'quantity_selector' -%}
@@ -1089,6 +1219,25 @@
           "type": "text",
           "id": "tray_variant_id_3",
           "label": "3-Candle Tray variant ID"
+        }
+      ]
+    },
+    {
+      "type": "sampler_picker",
+      "name": "Sampler Picker",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Heading",
+          "default": "Choose your scents"
+        },
+        {
+          "type": "number",
+          "id": "scent_count",
+          "label": "Required scent count",
+          "default": 5
         }
       ]
     },

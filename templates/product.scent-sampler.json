@@ -18,18 +18,11 @@
           "type": "price",
           "settings": {}
         },
-        "variant_picker": {
-          "type": "variant_picker",
+        "sampler_picker": {
+          "type": "sampler_picker",
           "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
-          }
-        },
-        "scent_picker": {
-          "type": "scent_picker",
-          "settings": {
-            "tray_variant_id_2": "52809329705239",
-            "tray_variant_id_3": "52809329738007"
+            "label": "Pick your 5 scents",
+            "scent_count": 5
           }
         },
         "buy_buttons": {
@@ -48,8 +41,7 @@
         "vendor",
         "title",
         "price",
-        "variant_picker",
-        "scent_picker",
+        "sampler_picker",
         "buy_buttons",
         "description"
       ],
