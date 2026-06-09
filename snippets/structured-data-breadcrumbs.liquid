@@ -1,0 +1,146 @@
+{%- liquid
+  assign breadcrumb_items = ''
+  assign position = 1
+-%}
+
+{%- case request.page_type -%}
+  {%- when 'product' -%}
+    {%- if product.collections.size > 0 -%}
+      {%- assign primary_collection = product.collections | first -%}
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": {{ shop.name | json }},
+              "item": {{ request.origin | json }}
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": {{ primary_collection.title | json }},
+              "item": {{ request.origin | append: primary_collection.url | json }}
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": {{ product.title | json }}
+            }
+          ]
+        }
+      </script>
+    {%- else -%}
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": {{ shop.name | json }},
+              "item": {{ request.origin | json }}
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": {{ product.title | json }}
+            }
+          ]
+        }
+      </script>
+    {%- endif -%}
+
+  {%- when 'collection' -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": {{ shop.name | json }},
+            "item": {{ request.origin | json }}
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": {{ collection.title | json }}
+          }
+        ]
+      }
+    </script>
+
+  {%- when 'article' -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": {{ shop.name | json }},
+            "item": {{ request.origin | json }}
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": {{ blog.title | json }},
+            "item": {{ request.origin | append: blog.url | json }}
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": {{ article.title | json }}
+          }
+        ]
+      }
+    </script>
+
+  {%- when 'blog' -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": {{ shop.name | json }},
+            "item": {{ request.origin | json }}
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": {{ blog.title | json }}
+          }
+        ]
+      }
+    </script>
+
+  {%- when 'page' -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": {{ shop.name | json }},
+            "item": {{ request.origin | json }}
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": {{ page.title | json }}
+          }
+        ]
+      }
+    </script>
+{%- endcase -%}

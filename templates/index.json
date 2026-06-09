@@ -200,6 +200,12 @@
             "collection": "candles"
           }
         },
+        "featured_collection_ekpCLz": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "room-sprays"
+          }
+        },
         "featured_collection_6c3aaG": {
           "type": "featured_collection",
           "settings": {
@@ -215,6 +221,7 @@
       },
       "block_order": [
         "featured_collection_zHggMh",
+        "featured_collection_ekpCLz",
         "featured_collection_6c3aaG",
         "featured_collection_GQ9fkf"
       ],
@@ -223,7 +230,7 @@
         "title": "Our Products",
         "heading_size": "h1",
         "image_ratio": "square",
-        "columns_desktop": 3,
+        "columns_desktop": 4,
         "color_scheme": "",
         "show_view_all": false,
         "columns_mobile": "1",
