@@ -23,10 +23,10 @@
         "row_rreydX": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-04-25_at_10.06.59_PM.png",
+            "image": "shopify://shop_images/IMG_0984.jpg",
             "caption": "Where candlelight and woodcraft meet.",
             "heading": "Our Story",
-            "text": "<p>Emberwood & Hearth is a small-batch, handcrafted home goods brand built around a single belief: the spaces you come home to deserve to feel like somewhere worth being. We're a small business, founded and run by hand, rooted in natural materials, honest craft, and the art of atmosphere. Everything we make starts with wood and fire — not as a theme, but as a foundation. You'll find them woven into every product we make, every material we choose, every detail we obsess over. That's not an accident. It's the whole point.</p>",
+            "text": "<p>Emberwood & Hearth is a small-batch, handcrafted home goods brand built around a single belief: the spaces you come home to deserve to feel like somewhere worth being. We're a husband-and-wife studio on Long Island, New York, rooted in natural materials, honest craft, and the art of atmosphere. Everything we make starts with wood and fire. Not as a theme, but as a foundation. You'll find them in every product we make, every material we choose, every detail we obsess over. That's not an accident. It's the whole point.</p>",
             "button_label": "",
             "button_link": ""
           }
@@ -65,7 +65,7 @@
         "text_HhBtJm": {
           "type": "text",
           "settings": {
-            "text": "<p>Emberwood & Hearth isn't just a name — it's a blueprint for everything we make. Each word carries its weight, and together they describe not just what we sell, but the feeling we're after in every product we craft.</p><ul><li><strong>Ember</strong> The settled warmth of a fire that's found its rhythm. Not the roar of a flame — the quiet, steady heat that lingers and fills a room.</li><li><strong>Wood</strong> The core material running through our entire brand. In our wicks, our lids, our woodworks, our finishes, and the scents themselves. The thread that ties everything together.</li><li><strong>Hearth </strong>The home. The gathering place. The room you walk into and exhale. Everything we make is designed to live there and make it feel more like itself.</li></ul>"
+            "text": "<p>Emberwood & Hearth isn't just a name. It's a blueprint for everything we make. Each word carries its weight, and together they describe not just what we sell, but the feeling we're after in every product we craft.</p><ul><li><strong>Ember:</strong> Fire that has settled. Not the roar of a flame. The quiet, steady heat that lingers and fills a room.</li><li><strong>Wood:</strong> The material at the center of everything. Our wicks, our lids, our woodwork, our finishes, and the scents themselves. The thread that ties it all together.</li><li><strong>Hearth:</strong> The home. The gathering place. The room you walk into and exhale. Everything we make is designed to live there and make it feel more like itself.</li></ul>"
           }
         }
       },
@@ -96,7 +96,7 @@
         "text_TnWFVd": {
           "type": "text",
           "settings": {
-            "text": "This isn't a candle brand that happens to use wood accents. Wood is the backbone of Emberwood & Hearth from the inside out — and it shows up in every single product we make. <em>From the wick that crackles to the lid that rests on top to the tray that holds it all in place — wood is present every step of the way. </em>Our candles burn on a wood wick — a thin slice of natural wood that crackles softly as it burns, exactly the way a real fire does. That sound is deliberate. It's part of the experience. Each candle is then capped with a handcrafted wood lid, cut and finished by hand from locally sourced hardwood. The lid isn't packaging — it's a piece of woodcraft in its own right.Our handcrafted woodworks extend the same material and philosophy beyond the candle itself. Locally sourced hardwoods, natural oil finishes, clean lines, and surfaces that let the grain do the talking. Our candle trays are handmade to fit our candles exactly — designed as a set, meant to be used as one.",
+            "text": "This isn't a candle brand that happens to use wood accents. Wood is the backbone of Emberwood & Hearth from the inside out, and it shows up in every single product we make. <em>From the wick that crackles, to the lid that rests on top, to the tray that holds it all in place, wood is present every step of the way. </em>Our candles burn on a wood wick, a thin slice of natural wood that crackles softly as it burns, exactly the way a real fire does. That sound is deliberate. It's part of the experience. Each candle is then capped with a handmade red oak lid, cut and finished by hand in our shop. The lid isn't packaging. It's a piece of woodcraft in its own right. Our handcrafted woodwork extends the same philosophy beyond the candle itself. Locally sourced hardwoods, natural tung oil finishes, clean lines, and surfaces that let the grain do the talking. Our candle trays are made to fit our candles exactly, designed as a set, meant to be used as one.",
             "text_style": "body"
           }
         }
@@ -133,7 +133,7 @@
         "text_LxYBPN": {
           "type": "text",
           "settings": {
-            "text": "<p>Our candle collection is built entirely around atmosphere. Every scent is named for a moment — a place, a time of day, a feeling you recognize the instant you walk into the room. Campfire in Evening. Woodshop at Night. Cabin after Rain. Mountain Trail after Dusk. These aren't just fragrance names. They're invitations to be somewhere.</p><p>You light the candle and the room shifts. The wood wick crackles. The scent fills the air. And for a moment, you're somewhere else — somewhere quieter, warmer, more your own. That's the intention behind every scent we pour.</p>"
+            "text": "<p>Our candle collection is built entirely around atmosphere. Every scent is named for a moment. A place, a time of day, a feeling you recognize the instant you walk into the room. Campfire in Evening. Woodshop at Night. Cabin after Rain. Mountain Trail at Dusk. These aren't just fragrance names. They're invitations to be somewhere.</p><p>You light the candle and the room shifts. The wood wick crackles. The scent fills the air. And for a moment, you're somewhere else. Somewhere quieter, warmer, more your own. That's the intention behind every scent we pour.</p>"
           }
         }
       },
@@ -188,7 +188,7 @@
         "column_FCHKtV": {
           "type": "column",
           "settings": {
-            "title": "100% SOY WAX",
+            "title": "100% Soy Wax",
             "text": "<p>All natural, clean burning.</p>",
             "link_label": "",
             "link": ""
@@ -197,7 +197,7 @@
         "column_HbMgJN": {
           "type": "column",
           "settings": {
-            "title": "WOOD WICKS",
+            "title": "Wood Wicks",
             "text": "<p>Natural wood. Real crackle.</p>",
             "link_label": "",
             "link": ""
@@ -206,7 +206,7 @@
         "column_g3j9Dc": {
           "type": "column",
           "settings": {
-            "title": "CLEAN FRAGRANCE",
+            "title": "Clean Fragrance",
             "text": "<p>Phthalate-free, skin-safe.</p>",
             "link_label": "",
             "link": ""
@@ -215,7 +215,7 @@
         "column_wUaMWc": {
           "type": "column",
           "settings": {
-            "title": "LOCAL HARDWOOD",
+            "title": "Local Hardwood",
             "text": "<p>Locally sourced, naturally finished.</p>",
             "link_label": "",
             "link": ""
@@ -255,7 +255,7 @@
             "image": "shopify://shop_images/Screenshot_2026-04-26_at_11.34.21_AM.png",
             "caption": "",
             "heading": "Made by Hand. Every Time.",
-            "text": "<p>Everything is made by hand in small batches. The candles are poured one batch at a time, carefully measured and crafted to burn cleanly and fill a room the way a fire does — slow, warm, and present. The woodworks are cut, shaped, and finished by hand. The trays are built to fit our candles. The lids are crafted to match. Nothing here is mass produced or outsourced. It's all made by us.</p><p>Small batch isn't a marketing phrase. It's how we maintain the quality and intention that makes these products worth owning. When an order leaves here, someone made it by hand. That matters to us, and we think it'll matter to you.</p>",
+            "text": "<p>Everything is made by hand in small batches. The candles are poured one batch at a time, carefully measured and crafted to burn cleanly and fill a room the way a fire does. Slow, warm, and present. The woodwork is cut, shaped, and finished by hand. The trays are built to fit our candles. The lids are crafted to match. Nothing here is mass produced or outsourced. It's all made by us.</p><p>Small batch isn't a marketing phrase. It's how we hold the quality and intention that makes these products worth owning. When an order leaves here, someone made it by hand. That matters to us, and we think it'll matter to you.</p>",
             "button_label": "",
             "button_link": ""
           }
@@ -266,7 +266,7 @@
             "image": "shopify://shop_images/Untitled_design.png",
             "caption": "",
             "heading": "A Full Experience Brand",
-            "text": "<p>Emberwood & Hearth isn't a single product — it's a complete sensory world built around wood, fire, and the atmosphere of home. The candle crackles. The wood lid sits on the jar. The tray holds it all in place. The scent fills the room and puts you somewhere specific — a back porch at dawn, a cabin after a long rain, a study with a glass of whiskey and a lamp burning low.</p><p>Every product we make is designed to be part of that world — to fit together, complement each other, and make your space feel more like the place you actually want to be. That's not a feature of what we sell. That's the whole point.</p><p>We don't chase trends. We don't do loud branding or mass production. We make things carefully, from honest materials, for the spaces worth coming home to.</p><p>That's Emberwood & Hearth. We're glad you found us.</p>",
+            "text": "<p>Emberwood & Hearth isn't a single product. It's a complete sensory world built around wood, fire, and the atmosphere of home. The candle crackles. The wood lid sits on the jar. The tray holds it all in place. The scent fills the room and puts you somewhere specific. A back porch at dawn, a cabin after a long rain, a study with a glass of whiskey and a lamp burning low.</p><p>Every product we make is designed to be part of that world. To fit together, complement each other, and make your space feel more like the place you actually want to be. That's not a feature of what we sell. That's the whole point.</p><p>We don't chase trends. We don't do loud branding or mass production. We make things carefully, from honest materials, for the spaces worth coming home to.</p><p>That's Emberwood & Hearth. We're glad you found us.</p>",
             "button_label": "",
             "button_link": ""
           }
