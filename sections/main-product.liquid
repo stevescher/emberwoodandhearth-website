@@ -349,8 +349,14 @@
                         });
                       }
 
+                      // Capture phase so this runs BEFORE the theme's <product-form>
+                      // submit handler (registered in its constructor, bubble phase).
+                      // stopImmediatePropagation prevents product-form.js from also
+                      // adding the flight variant itself — otherwise the cart gets the
+                      // flight variant AND the tray AND the scents all as separate lines.
                       form.addEventListener('submit', async e => {
                         e.preventDefault();
+                        e.stopImmediatePropagation();
                         if (selected.length !== required) { err.textContent = 'Please select ' + required + ' scents.'; err.hidden = false; return; }
                         err.hidden = true;
 
@@ -379,7 +385,7 @@
                           err.hidden = false;
                           if (btn) { btn.textContent = prevText; btn.disabled = selected.length !== required; }
                         }
-                      });
+                      }, true);
 
                       refresh();
                     });
