@@ -155,9 +155,14 @@
         {%- if settings.logo != blank -%}
           <div class="header__heading-logo-wrapper">
             {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-            {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-            {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
-            {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+            {%- if settings.logo_height != blank -%}
+              {%- assign logo_width_safe = settings.logo_height | times: settings.logo.aspect_ratio | round -%}
+            {%- else -%}
+              {%- assign logo_width_safe = 100 -%}
+            {%- endif -%}
+            {%- assign logo_height = logo_width_safe | divided_by: settings.logo.aspect_ratio -%}
+            {% capture sizes %}(max-width: {{ logo_width_safe | times: 2 }}px) 50vw, {{ logo_width_safe }}px{% endcapture %}
+            {% capture widths %}{{ logo_width_safe }}, {{ logo_width_safe | times: 1.5 | round }}, {{ logo_width_safe | times: 2 }}{% endcapture %}
             {{
               settings.logo
               | image_url: width: 600
@@ -165,7 +170,7 @@
                 class: 'header__heading-logo motion-reduce',
                 widths: widths,
                 height: logo_height,
-                width: settings.logo_width,
+                width: logo_width_safe,
                 alt: logo_alt,
                 sizes: sizes,
                 preload: true
@@ -198,9 +203,14 @@
         {%- if settings.logo != blank -%}
           <div class="header__heading-logo-wrapper">
             {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-            {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-            {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
-            {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+            {%- if settings.logo_height != blank -%}
+              {%- assign logo_width_safe = settings.logo_height | times: settings.logo.aspect_ratio | round -%}
+            {%- else -%}
+              {%- assign logo_width_safe = 100 -%}
+            {%- endif -%}
+            {%- assign logo_height = logo_width_safe | divided_by: settings.logo.aspect_ratio -%}
+            {% capture sizes %}(min-width: 750px) {{ logo_width_safe }}px, 50vw{% endcapture %}
+            {% capture widths %}{{ logo_width_safe }}, {{ logo_width_safe | times: 1.5 | round }}, {{ logo_width_safe | times: 2 }}{% endcapture %}
             {{
               settings.logo
               | image_url: width: 600
@@ -208,7 +218,7 @@
                 class: 'header__heading-logo',
                 widths: widths,
                 height: logo_height,
-                width: settings.logo_width,
+                width: logo_width_safe,
                 alt: logo_alt,
                 sizes: sizes,
                 preload: true

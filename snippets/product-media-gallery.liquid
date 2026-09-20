@@ -1,3 +1,18 @@
+{%- liquid
+  case settings.page_width
+    when 'narrow'
+      assign page_width_px = 1200
+    when 'wide'
+      assign page_width_px = 1600
+    when 'normal'
+      assign page_width_px = 1400
+    else
+      assign page_width_px = settings.page_width | plus: 0
+  endcase
+  if page_width_px == 0
+    assign page_width_px = 1200
+  endif
+-%}
 {% comment %}
   Renders a product media gallery. Should be used with 'media-gallery.js'
   Also see 'product-media-modal'
@@ -202,7 +217,7 @@
         class="thumbnail-list list-unstyled slider slider--mobile{% if section.settings.gallery_layout == 'thumbnail_slider' %} slider--tablet-up{% endif %}"
       >
         {%- capture sizes -%}
-          (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width | minus: 100 | times: media_width | round }} - 4rem) / 4),
+          (min-width: {{ page_width_px }}px) calc(({{ page_width_px | minus: 100 | times: media_width | round }} - 4rem) / 4),
           (min-width: 990px) calc(({{ media_width | times: 100 }}vw - 4rem) / 4),
           (min-width: 750px) calc((100vw - 15rem) / 8),
           calc((100vw - 8rem) / 3)

@@ -1,3 +1,18 @@
+{%- liquid
+  case settings.page_width
+    when 'narrow'
+      assign page_width_px = 1200
+    when 'wide'
+      assign page_width_px = 1600
+    when 'normal'
+      assign page_width_px = 1400
+    else
+      assign page_width_px = settings.page_width | plus: 0
+  endcase
+  if page_width_px == 0
+    assign page_width_px = 1200
+  endif
+-%}
 {% comment %}
   Renders an article card for a given blog with settings to either show the image or not.
 
@@ -63,7 +78,7 @@
                   {{ article.image.src | image_url }} {{ article.image.src.width }}w
                 "
                 src="{{ article.image.src | image_url: width: 533 }}"
-                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                sizes="(min-width: {{ page_width_px }}px) {{ page_width_px | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
                 alt="{{ article.image.src.alt | escape }}"
                 class="motion-reduce"
                 {% unless lazy_load == false %}

@@ -1,3 +1,18 @@
+{%- liquid
+  case settings.page_width
+    when 'narrow'
+      assign page_width_px = 1200
+    when 'wide'
+      assign page_width_px = 1600
+    when 'normal'
+      assign page_width_px = 1400
+    else
+      assign page_width_px = settings.page_width | plus: 0
+  endcase
+  if page_width_px == 0
+    assign page_width_px = 1200
+  endif
+-%}
 {{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
 
 <article class="article-template">
@@ -29,7 +44,7 @@
                   {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
                   {{ article.image | image_url }} {{ article.image.width }}w
                 "
-                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+                sizes="(min-width: {{ page_width_px }}px) {{ page_width_px | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
                 src="{{ article.image | image_url: width: 1100 }}"
                 loading="eager"
                 fetchpriority="high"

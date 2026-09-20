@@ -1,3 +1,18 @@
+{%- liquid
+  case settings.page_width
+    when 'narrow'
+      assign page_width_px = 1200
+    when 'wide'
+      assign page_width_px = 1600
+    when 'normal'
+      assign page_width_px = 1400
+    else
+      assign page_width_px = settings.page_width | plus: 0
+  endcase
+  if page_width_px == 0
+    assign page_width_px = 1200
+  endif
+-%}
 {% comment %}
   Renders a collection card
 
@@ -63,7 +78,7 @@
               "
               src="{{ card_collection.featured_image | image_url: width: 1500 }}"
               sizes="
-                (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: columns }}px,
+                (min-width: {{ page_width_px }}px) {{ page_width_px | minus: 100 | divided_by: columns }}px,
                 (min-width: 750px) {% if columns > 1 %}calc((100vw - 10rem) / 2){% else %}calc(100vw - 10rem){% endif %},
                 calc(100vw - 3rem)
               "

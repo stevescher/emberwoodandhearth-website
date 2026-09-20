@@ -1,3 +1,18 @@
+{%- liquid
+  case settings.page_width
+    when 'narrow'
+      assign page_width_px = 1200
+    when 'wide'
+      assign page_width_px = 1600
+    when 'normal'
+      assign page_width_px = 1400
+    else
+      assign page_width_px = settings.page_width | plus: 0
+  endcase
+  if page_width_px == 0
+    assign page_width_px = 1200
+  endif
+-%}
 {{ 'video-section.css' | asset_url | stylesheet_tag }}
 {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
 
@@ -33,7 +48,7 @@
   {% if section.settings.full_width -%}
     100vw
   {%- else -%}
-    (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px)
+    (min-width: {{ page_width_px }}px) {{ page_width_px | minus: 100 }}px, (min-width: 750px)
     calc(100vw - 10rem), 100vw
   {%- endif %}
 {%- endcapture -%}
