@@ -144,7 +144,9 @@ stack correctly; only mixed types break. Setting
 `combinesWith.productDiscounts: true` was tried on 2026-09-20 and made no
 difference, so it was reverted: that field governs combining across discount
 *classes*, not two automatic product discounts with each other. A real fix
-needs a Shopify Function. Tracked as EMB-756 (Icebox).
+needs a Shopify Function, tracked as EMB-756 and deliberately left in
+Icebox: Shopify's declarative rules handle refunds and edge cases for
+free, so the trigger to build is a capability we need, not this bug.
 
 ## Drill
 
