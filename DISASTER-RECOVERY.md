@@ -137,6 +137,15 @@ If discounts are ever lost, the flights silently sell at full price with no
 visible error. See `candle-flight-and-sampler-flows` in memory for the rules
 and expected totals.
 
+**Known pricing limitation.** Shopify applies only one automatic discount per
+cart. A Two-Candle Flight and a Three-Candle Flight in the same cart charges
+$275.00 instead of $255.00, overcharging by $20. Two of the *same* flight type
+stack correctly; only mixed types break. Setting
+`combinesWith.productDiscounts: true` was tried on 2026-09-20 and made no
+difference, so it was reverted: that field governs combining across discount
+*classes*, not two automatic product discounts with each other. A real fix
+needs a Shopify Function (Discounts API).
+
 ## Drill
 
 Test this twice a year, because an untested DR plan is a hope, not a plan:
