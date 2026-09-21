@@ -168,10 +168,13 @@
         return variants.find((v) => v.id === id) || variants[0];
       };
 
+      // Read through getAttribute, not dataset. A hyphen followed by a DIGIT is
+      // not camel-cased by the DOM, so data-variant-10oz stays dataset['variant-10oz']
+      // and dataset.variant10oz is undefined. getAttribute avoids the whole trap.
       const variantIdForSize = (checkbox, size) => {
         const key = String(size).toLowerCase().replace(/\s/g, '');
-        const id = checkbox.dataset['variant' + key.charAt(0).toUpperCase() + key.slice(1)];
-        const available = checkbox.dataset['available' + key.charAt(0).toUpperCase() + key.slice(1)];
+        const id = checkbox.getAttribute(`data-variant-${key}`);
+        const available = checkbox.getAttribute(`data-available-${key}`);
         return id && available === 'true' ? parseInt(id, 10) : null;
       };
 
