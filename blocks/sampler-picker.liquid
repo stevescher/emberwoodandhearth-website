@@ -1,0 +1,269 @@
+{%- doc -%}
+  Scent Sampler Pack picker.
+
+  Unlike the Candle Flight, the sampler is a single variant. The chosen scents
+  ride along as line item properties (Scent 1..N) on that variant, so the
+  theme's own product form performs the add to cart. This block only gates the
+  submit button until the required number of scents is chosen.
+{%- enddoc -%}
+
+{% liquid
+  assign product = closest.product
+  if request.visual_preview_mode and product == blank
+    assign product = collections.all.products.first
+  endif
+
+  assign scent_collection = block.settings.scent_collection
+  assign required_count = block.settings.scent_count | default: 5
+  assign product_form_id = 'BuyButtons-ProductForm-' | append: section.id
+%}
+
+{%- if product != blank -%}
+  <div
+    class="sampler-picker"
+    data-block-id="{{ block.id }}"
+    data-required="{{ required_count }}"
+    data-form-id="{{ product_form_id }}"
+    {{ block.shopify_attributes }}
+  >
+    <div class="sampler-picker__header">
+      <span class="sampler-picker__label">{{ block.settings.heading }}</span>
+      <span class="sampler-picker__counter" data-sampler-picker-counter aria-live="polite"></span>
+    </div>
+
+    <div class="sampler-picker__grid" data-sampler-picker-grid role="group" aria-label="{{ block.settings.heading | escape }}">
+      {%- for scent in scent_collection.products -%}
+        <label class="sampler-picker__pill">
+          <input
+            type="checkbox"
+            class="sampler-picker__checkbox"
+            value="{{ scent.title | escape }}"
+          >
+          <span class="sampler-picker__pill-label">{{ scent.title | escape }}</span>
+        </label>
+      {%- else -%}
+        <p class="sampler-picker__empty">
+          No scents available. Add products to the selected collection.
+        </p>
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%}
+      Rendered outside the <form> but bound to it via the form attribute, so
+      FormData picks them up. Disabled until filled so empty properties are
+      never submitted.
+    {%- endcomment -%}
+    {%- for i in (1..required_count) -%}
+      <input
+        type="hidden"
+        name="properties[Scent {{ i }}]"
+        form="{{ product_form_id }}"
+        data-sampler-picker-property="{{ i }}"
+        value=""
+        disabled
+      >
+    {%- endfor -%}
+  </div>
+
+
+  <script>
+    (() => {
+      const root = document.querySelector('.sampler-picker[data-block-id="{{ block.id }}"]');
+      if (!root || root.dataset.samplerPickerReady === 'true') return;
+      root.dataset.samplerPickerReady = 'true';
+
+      const required = parseInt(root.dataset.required, 10);
+      const formId = root.dataset.formId;
+      // Resolve on use rather than caching: a section re-render can replace
+      // these nodes without re-running this script (see morph.js:588).
+      const counter = () => root.querySelector('[data-sampler-picker-counter]');
+      const properties = () => Array.from(root.querySelectorAll('[data-sampler-picker-property]'));
+
+      let selected = [];
+
+      const checkboxes = () => Array.from(root.querySelectorAll('.sampler-picker__checkbox'));
+
+      // buy-buttons renders after this block, so resolve the form lazily.
+      const form = () => document.getElementById(formId);
+
+      const syncProperties = () => {
+        properties().forEach((input, index) => {
+          const value = selected[index];
+          if (value) {
+            input.value = value;
+            input.disabled = false;
+          } else {
+            input.value = '';
+            input.disabled = true;
+          }
+        });
+      };
+
+      const refresh = () => {
+        const counterEl = counter();
+        if (counterEl) counterEl.textContent = `${selected.length} of ${required} selected`;
+        const complete = selected.length === required;
+
+        const activeForm = form();
+        if (activeForm) {
+          activeForm.querySelectorAll('[name="add"]').forEach((button) => {
+            button.disabled = !complete;
+          });
+
+          // Dynamic checkout bypasses the submit button entirely, so block it
+          // until the selection is complete.
+          const dynamic = activeForm.querySelector('.shopify-payment-button');
+          if (dynamic) {
+            dynamic.style.pointerEvents = complete ? '' : 'none';
+            dynamic.style.opacity = complete ? '' : '0.45';
+            dynamic.setAttribute('aria-disabled', complete ? 'false' : 'true');
+          }
+        }
+
+        checkboxes().forEach((cb) => {
+          // Re-apply checked state in case a morph replaced the inputs.
+          cb.checked = selected.includes(cb.value);
+          cb.disabled = selected.length >= required && !cb.checked;
+        });
+
+        syncProperties();
+      };
+
+      root.addEventListener('change', (event) => {
+        const cb = event.target;
+        if (!cb.classList || !cb.classList.contains('sampler-picker__checkbox')) return;
+
+        if (cb.checked) {
+          if (selected.length >= required) {
+            cb.checked = false;
+            return;
+          }
+          selected.push(cb.value);
+        } else {
+          selected = selected.filter((name) => name !== cb.value);
+        }
+        refresh();
+      });
+
+      // Clear the selection once the add succeeds so the next one starts fresh.
+      document.addEventListener('shopify:cart:lines-update', () => {
+        if (!selected.length) return;
+        selected = [];
+        refresh();
+      });
+
+      refresh();
+      document.addEventListener('DOMContentLoaded', refresh);
+    })();
+  </script>
+{%- endif -%}
+
+{% stylesheet %}
+  .sampler-picker {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm, 0.75rem);
+  }
+
+  .sampler-picker__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .sampler-picker__label {
+    font-weight: 600;
+  }
+
+  .sampler-picker__counter,
+  .sampler-picker__empty {
+    color: var(--color-foreground-subdued);
+    font-size: 0.875rem;
+  }
+
+  .sampler-picker__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .sampler-picker__pill {
+    display: inline-flex;
+    cursor: pointer;
+  }
+
+  .sampler-picker__checkbox {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .sampler-picker__pill-label {
+    display: inline-block;
+    padding: 0.5rem 1.125rem;
+    border: var(--style-border-width-inputs, 1px) solid var(--color-input-border);
+    border-radius: var(--style-border-radius-inputs, 4rem);
+    color: var(--color-input-text);
+    background-color: var(--color-input-background);
+    font-size: 0.875rem;
+    line-height: 1.2;
+    transition: background-color var(--animation-speed, 0.1s) var(--animation-easing, ease),
+      border-color var(--animation-speed, 0.1s) var(--animation-easing, ease),
+      color var(--animation-speed, 0.1s) var(--animation-easing, ease);
+  }
+
+  .sampler-picker__pill:has(.sampler-picker__checkbox:checked) .sampler-picker__pill-label {
+    background-color: var(--color-selected-variant-background);
+    border-color: var(--color-selected-variant-border);
+    color: var(--color-selected-variant-text);
+  }
+
+  .sampler-picker__pill:has(.sampler-picker__checkbox:focus-visible) .sampler-picker__pill-label {
+    outline: 2px solid var(--color-foreground);
+    outline-offset: 2px;
+  }
+
+  .sampler-picker__pill:has(.sampler-picker__checkbox:disabled:not(:checked)) .sampler-picker__pill-label {
+    background-color: var(--input-disabled-background-color);
+    border-color: var(--input-disabled-border-color);
+    color: var(--input-disabled-text-color);
+    cursor: not-allowed;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Sampler picker",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Choose your scents"
+    },
+    {
+      "type": "number",
+      "id": "scent_count",
+      "label": "Required scent count",
+      "default": 5
+    },
+    {
+      "type": "collection",
+      "id": "scent_collection",
+      "label": "Scent collection",
+      "info": "Products shown as selectable scents."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sampler picker",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}
