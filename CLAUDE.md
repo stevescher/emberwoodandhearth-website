@@ -1,5 +1,7 @@
 # emberwoodandhearth-website — Shopify theme
 
+> This project follows the rules in `/Users/stevescher/claude/CLAUDE.md` and `/Users/stevescher/claude/emberwood/CLAUDE.md`. Claude Code loads those files automatically for any session in this folder.
+
 ## Read the Emberwood Brain before working
 
 **Path:** `/Users/stevescher/Library/Mobile Documents/com~apple~CloudDocs/Emberwood/Emberwood Brain/`
